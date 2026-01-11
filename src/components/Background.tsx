@@ -4,10 +4,13 @@ import { useState, useEffect, useRef } from "react";
 
 import { NAV_ITEMS } from "../data/pages";
 
-const gradients: Record<string, string> = NAV_ITEMS.reduce((acc, it) => {
-	acc[it.path] = it.gradient;
-	return acc;
-}, {} as Record<string, string>);
+const gradients: Record<string, string> = NAV_ITEMS.reduce(
+	(acc, it) => {
+		acc[it.path] = it.gradient;
+		return acc;
+	},
+	{} as Record<string, string>,
+);
 
 export default function Background() {
 	const pathname = usePathname();
@@ -73,8 +76,8 @@ export default function Background() {
 					prev.map((layer) =>
 						layer.path === pathname
 							? { ...layer, visible: true }
-							: { ...layer, visible: false }
-					)
+							: { ...layer, visible: false },
+					),
 				);
 			});
 		});
@@ -82,7 +85,7 @@ export default function Background() {
 		cleanupRef.current = window.setTimeout(() => {
 			if (animationIdRef.current !== animationId) return;
 			setLayers((prev) =>
-				prev.filter((layer) => layer.path === pathname)
+				prev.filter((layer) => layer.path === pathname),
 			);
 			cleanupRef.current = null;
 		}, TRANSITION_MS + 100);

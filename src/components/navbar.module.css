@@ -45,6 +45,22 @@
 	color: var(--hover-color, #f0a500);
 }
 
+/* Active nav item should not change on hover; keep the color equal to first gradient stop */
+.link.active {
+	color: var(--hover-color, #fff);
+	cursor: default;
+}
+
+.link.active:hover {
+	color: var(--hover-color, #fff);
+}
+
+/* Title active state */
+.title.active {
+	color: var(--hover-color, #fff);
+	cursor: default;
+}
+
 .title {
 	font-size: 1.25rem;
 	font-weight: 600;
