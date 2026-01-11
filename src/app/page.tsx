@@ -1,7 +1,9 @@
+import styles from "./home.module.css";
+
 export default function Home() {
 	return (
 		<div>
-			<main></main>
+			<main>stuff</main>
 		</div>
 	);
 }
