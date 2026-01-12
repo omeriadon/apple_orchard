@@ -19,8 +19,8 @@ export default function DevicePage({ children }: Props) {
 			<ProgressiveBlur
 				className={`${styles.blurEdge} ${styles.blurRight}`}
 				direction="right"
-                blurIntensity={1}
-                blurLayers={3}
+				blurIntensity={1}
+				blurLayers={3}
 			/>
 		</section>
 	);

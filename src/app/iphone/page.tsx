@@ -67,7 +67,13 @@ function MarkerOrPreview({
 				onClick={onClick}
 				aria-label={ariaLabel}
 			>
-				<Image src={foundSrc} alt="" width={240} height={150} className={styles.previewImg} />
+				<Image
+					src={foundSrc}
+					alt=""
+					width={240}
+					height={150}
+					className={styles.previewImg}
+				/>
 			</button>
 		);
 	}
@@ -101,7 +107,9 @@ export default function Page() {
 							ariaExpanded={openId === device.id}
 							ariaControls={`popup-${device.id}`}
 							onClick={() =>
-								setOpenId(openId === device.id ? null : device.id)
+								setOpenId(
+									openId === device.id ? null : device.id,
+								)
 							}
 							ariaLabel={`Toggle ${device.name}`}
 						/>

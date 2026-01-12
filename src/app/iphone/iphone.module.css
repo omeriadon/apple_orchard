@@ -28,7 +28,9 @@
 	border: 2px solid rgba(0, 0, 0, 0.12);
 	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 	cursor: pointer;
-	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	transition:
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
 }
 
 .marker:hover {
@@ -57,7 +59,9 @@
 	transform: translateX(-50%) scale(0.98);
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 180ms ease, transform 180ms ease;
+	transition:
+		opacity 180ms ease,
+		transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 }

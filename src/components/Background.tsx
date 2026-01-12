@@ -20,7 +20,7 @@ export default function Background() {
 	const raf2Ref = useRef<number | null>(null);
 	const cleanupRef = useRef<number | null>(null);
 	const animationIdRef = useRef(0);
-	const TRANSITION_MS = 2000; 
+	const TRANSITION_MS = 2000;
 
 	const [layers, setLayers] = useState<
 		{ id: string; path: string; gradient: string; visible: boolean }[]
@@ -38,7 +38,6 @@ export default function Background() {
 		const currentGradient =
 			gradients[pathname as keyof typeof gradients] || gradients["/"];
 
-
 		if (
 			layers.length &&
 			layers[layers.length - 1].path === pathname &&
@@ -47,7 +46,6 @@ export default function Background() {
 			return;
 
 		const animationId = ++animationIdRef.current;
-
 
 		setLayers((prev) => {
 			if (prev.length && prev[prev.length - 1].path === pathname)
