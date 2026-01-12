@@ -39,11 +39,7 @@ export default function Page() {
 	return (
 		<DevicePage useTimeline>
 			{iPhones.map((device) => (
-				<div
-					className={styles.item}
-					key={device.id}
-					role="listitem"
-				>
+				<div className={styles.item} key={device.id} role="listitem">
 					<button
 						type="button"
 						className={styles.itemButton}
@@ -55,9 +51,7 @@ export default function Page() {
 						aria-label={`Toggle ${device.name}`}
 					>
 						<MarkerOrPreview id={device.id} image={device.image} />
-						<span className={styles.label}>
-							{device.name}
-						</span>
+						<span className={styles.label}>{device.name}</span>
 					</button>
 
 					<div

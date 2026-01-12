@@ -1,0 +1,43 @@
+.main {
+	margin: 0 2rem;
+}
+
+.top {
+	text-align: center;
+	gap: 1rem;
+	font-family: "SFMono", monospace;
+	display: grid;
+	margin-bottom: 5rem;
+}
+
+.title {
+	font-size: 3rem;
+	margin-top: 4rem;
+}
+
+.subtitle {
+	font-size: 1.25rem;
+}
+
+.links {
+	display: grid;
+	gap: 1rem;
+	text-align: center;
+	font-family: "SFMono", monospace;
+}
+
+.linksTitle {
+	text-align: center;
+	font-size: 1.7rem;
+	font-family: "SFMono", monospace;
+	margin-bottom: 1.5rem;
+}
+
+.link {
+	transition: all 0.3s ease;
+	padding: 1rem;
+	width: 200px;
+	margin: 0 auto;
+	cursor: pointer;
+	border-radius: 20px;
+}

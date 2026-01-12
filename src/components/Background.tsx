@@ -2,9 +2,9 @@
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 
-import { NAV_ITEMS } from "../data/pages";
+import { navItems } from "../data/pages";
 
-const gradients: Record<string, string> = NAV_ITEMS.reduce(
+const gradients: Record<string, string> = navItems.reduce(
 	(acc, it) => {
 		acc[it.path] = it.gradient;
 		return acc;
