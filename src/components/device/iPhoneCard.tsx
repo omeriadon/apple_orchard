@@ -13,7 +13,7 @@ import {
 	HardDrive,
 } from "lucide-react";
 import type { DeviceCardRowProps } from "../DeviceCardRow";
-import { DEVICE_CARD_ICON_SIZE } from "../DeviceCardRow";
+import styles from "@/components/deviceCardRow.module.css";
 
 export default function IphoneCard({
 	device,
@@ -30,7 +30,16 @@ export default function IphoneCard({
 		},
 		{
 			title: "Brightness",
-			value: `${device.maxBrightness} nits`,
+			value: (() => {
+				if (device.maxBrightness < 3000) {
+					return (
+						<span className={styles.old}>
+							{device.maxBrightness} nits
+						</span>
+					);
+				}
+				return <span>{device.maxBrightness} nits</span>;
+			})(),
 			icon: Sun,
 		},
 		{
@@ -38,27 +47,10 @@ export default function IphoneCard({
 			value: (() => {
 				switch (device.proMotion) {
 					case false:
-						return (
-							<span>
-								60hz{" "}
-								<span
-									style={{
-										fontSize: "0.8rem",
-										opacity: 0.5,
-										textTransform: "uppercase",
-										marginLeft: "0.2rem",
-									}}
-								>
-									Old
-								</span>
-							</span>
-						);
+						return <span className={styles.old}>60hz</span>;
 
 					case true:
 						return <div>ProMotion</div>;
-
-					default:
-						return null;
 				}
 			})(),
 			icon: RefreshCcw,
@@ -70,12 +62,26 @@ export default function IphoneCard({
 		},
 		{
 			title: "RAM",
-			value: `${device.ram} GB`,
+			value: (() => {
+				if (device.ram < 8) {
+					return <span className={styles.old}>{device.ram} GB</span>;
+				}
+				return <span>{device.ram} GB</span>;
+			})(),
 			icon: MemoryStick,
 		},
 		{
 			title: "Storage",
-			value: `${device.baseStorage} GB`,
+			value: (() => {
+				if (device.baseStorage < 256) {
+					return (
+						<span className={styles.old}>
+							{device.baseStorage} GB
+						</span>
+					);
+				}
+				return <span>{device.baseStorage} GB</span>;
+			})(),
 			icon: HardDrive,
 		},
 		{
@@ -88,21 +94,7 @@ export default function IphoneCard({
 			value: (() => {
 				switch (device.portType) {
 					case "lightning":
-						return (
-							<span>
-								Lightning{" "}
-								<span
-									style={{
-										fontSize: "0.8rem",
-										opacity: 0.5,
-										textTransform: "uppercase",
-										marginLeft: "0.2rem",
-									}}
-								>
-									Old
-								</span>
-							</span>
-						);
+						return <span className={styles.old}>Lightning</span>;
 
 					case "usbC":
 						return <div>USB-C</div>;
@@ -118,21 +110,7 @@ export default function IphoneCard({
 			value: (() => {
 				switch (device.authentication) {
 					case "touchID":
-						return (
-							<span>
-								Touch ID{" "}
-								<span
-									style={{
-										fontSize: "0.8rem",
-										opacity: 0.5,
-										textTransform: "uppercase",
-										marginLeft: "0.2rem",
-									}}
-								>
-									Old
-								</span>
-							</span>
-						);
+						return <span className={styles.old}>Touch ID</span>;
 					case "faceID":
 						return <div>Face ID</div>;
 
