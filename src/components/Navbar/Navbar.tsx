@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { navItems } from "../../data/pages";
+import Image from "next/image";
 
 export default function Navbar() {
 	const center = navItems.filter((i) => i.slot === "center");
@@ -9,7 +10,13 @@ export default function Navbar() {
 		<nav className={styles.navbar}>
 			<div className={styles.left}>
 				<Link href="/" className={styles.title} key="/">
-					Apple Orchard
+					<Image
+						src="/apple.svg"
+						alt="Apple Orchard Logo"
+						width={27}
+						height={27}
+					/>
+					<h1>Apple Orchard</h1>
 				</Link>
 			</div>
 

@@ -53,4 +53,15 @@
 	font-weight: 600;
 	text-decoration: none;
 	color: white;
+	display: flex;
+	gap: 0.7rem;
+	align-items: center;
+	transition: all 0.3s ease;
+}
+.title:hover {
+	transform: scale(1.1);
+}
+
+.title img {
+	margin-bottom: 0.1rem;
 }

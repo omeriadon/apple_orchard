@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Background from "@/components/Background";
+import { ViewTransition } from "react";
+import { View } from "lucide-react";
 
 export const metadata: Metadata = {
 	title: "Apple Orchard",
@@ -19,7 +21,9 @@ export default function RootLayout({
 				<Background />
 				<div className="site-content">
 					<Navbar />
-					<main>{children}</main>
+					<ViewTransition>
+						<main>{children}</main>
+					</ViewTransition>
 				</div>
 			</body>
 		</html>
