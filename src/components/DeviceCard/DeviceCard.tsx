@@ -2,7 +2,10 @@ import React from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 import { CalendarPlus, CalendarMinus } from "lucide-react";
-import { DeviceCardRow, type DeviceCardRowProps } from "./DeviceCardRow";
+import {
+	DeviceCardRow,
+	type DeviceCardRowProps,
+} from "../DeviceCardRow/DeviceCardRow";
 
 type Props = {
 	device: Device;

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import IphoneCard from "../../components/device/iPhoneCard";
 import { iPhones } from "@/data/iphones";
-import DevicePage from "@/components/DevicePage";
+import DevicePage from "@/components/DevicePage/DevicePage";
 import devicePageStyles from "@/components/devicePage.module.css";
 import Image from "next/image";
 

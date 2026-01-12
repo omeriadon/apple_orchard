@@ -1,4 +1,4 @@
-import DeviceCard from "../DeviceCard";
+import DeviceCard from "../DeviceCard/DeviceCard";
 import { iPhone } from "@/types/iphone";
 import {
 	BatteryCharging,
@@ -12,7 +12,7 @@ import {
 	MemoryStick,
 	HardDrive,
 } from "lucide-react";
-import type { DeviceCardRowProps } from "../DeviceCardRow";
+import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
 import styles from "@/components/deviceCardRow.module.css";
 
 export default function IphoneCard({

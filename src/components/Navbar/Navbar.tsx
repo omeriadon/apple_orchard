@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
-import { NAV_ITEMS } from "../data/pages";
+import { NAV_ITEMS } from "../../data/pages";
 
 export default function Navbar() {
 	const left = NAV_ITEMS.filter((i) => i.slot === "left");
