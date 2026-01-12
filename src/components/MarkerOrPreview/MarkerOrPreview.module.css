@@ -7,6 +7,9 @@
 	justify-content: center;
 	margin-bottom: 0.5rem;
 	transition: all 0.15s ease;
+	user-select: none;
+	-webkit-user-drag: none;
+	pointer-events: none;
 }
 
 .marker {

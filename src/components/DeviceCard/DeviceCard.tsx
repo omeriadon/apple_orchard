@@ -13,6 +13,7 @@ type Props = {
 	onClose?: () => void;
 	open: boolean;
 	onPromote?: () => void;
+	zIndex?: number;
 };
 
 export default function DeviceCard({
@@ -21,39 +22,34 @@ export default function DeviceCard({
 	onClose,
 	open,
 	onPromote,
+	zIndex,
 }: Props) {
 	const ref = useRef<HTMLElement | null>(null);
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	const offset = useRef({ x: 0, y: 0 });
 	const dragging = useRef(false);
-	const promoted = useRef(false);
-
-	const PROMOTE_THRESHOLD = 6;
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
 
+		onPromote?.(); // ALWAYS promote on touch
+
 		dragging.current = true;
 		ref.current?.setPointerCapture(e.pointerId);
-		offset.current = { x: e.clientX - pos.x, y: e.clientY - pos.y };
+
+		offset.current = {
+			x: e.clientX - pos.x,
+			y: e.clientY - pos.y,
+		};
 	};
 
 	const onPointerMove = (e: React.PointerEvent) => {
 		if (!dragging.current) return;
 
-		const nextX = e.clientX - offset.current.x;
-		const nextY = e.clientY - offset.current.y;
-
-		if (!promoted.current) {
-			const dx = Math.abs(nextX - pos.x);
-			const dy = Math.abs(nextY - pos.y);
-			if (dx + dy >= PROMOTE_THRESHOLD) {
-				promoted.current = true;
-				onPromote?.();
-			}
-		}
-
-		setPos({ x: nextX, y: nextY });
+		setPos({
+			x: e.clientX - offset.current.x,
+			y: e.clientY - offset.current.y,
+		});
 	};
 
 	const onPointerUp = (e: React.PointerEvent) => {
@@ -75,15 +71,18 @@ export default function DeviceCard({
 				}px) scale(${open ? 1 : 0.95})`,
 				touchAction: "none",
 				cursor: open ? "grab" : "default",
+				zIndex: zIndex ?? 20,
 			}}
 		>
 			<header className={styles.header}>
 				<div className={styles.flex}>
 					<h2 id={`device-${device.id}`}>{device.name}</h2>
+
 					{onClose && (
 						<button
 							type="button"
 							className={styles.close}
+							onPointerDown={(e) => e.stopPropagation()}
 							onClick={onClose}
 						>
 							✕

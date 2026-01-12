@@ -15,17 +15,21 @@ import {
 import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
 import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
 
+type Props = {
+	device: iPhone;
+	open: boolean;
+	onClose?: () => void;
+	onPromote?: () => void;
+	zIndex?: number;
+};
+
 export default function IphoneCard({
 	device,
-	onClose,
 	open,
+	onClose,
 	onPromote,
-}: {
-	device: iPhone;
-	onClose?: () => void;
-	open: boolean;
-	onPromote?: () => void;
-}) {
+	zIndex,
+}: Props) {
 	const infoRows: DeviceCardRowProps[] = [
 		{ title: "Screen Size", value: `${device.screenSize}"`, icon: Monitor },
 		{
@@ -111,9 +115,10 @@ export default function IphoneCard({
 		<DeviceCard
 			device={device}
 			infoRows={infoRows}
-			onClose={onClose}
 			open={open}
+			onClose={onClose}
 			onPromote={onPromote}
+			zIndex={zIndex}
 		/>
 	);
 }
