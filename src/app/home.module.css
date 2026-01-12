@@ -41,3 +41,7 @@
 	cursor: pointer;
 	border-radius: 20px;
 }
+
+.link:hover {
+	transform: scale(1.1);
+}

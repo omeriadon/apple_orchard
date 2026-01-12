@@ -2,6 +2,7 @@
 import styles from "./home.module.css";
 import { useState } from "react";
 import { navItems } from "@/data/pages";
+import Link from "next/link";
 
 export default function Home() {
 	const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -18,11 +19,17 @@ export default function Home() {
 					A tool to easily compare Apple devices on their main specs,
 					to help with your next buy.
 				</h2>
+				<br />
+				<p>
+					Scroll through a section and compare the main specs of a
+					device, such as base storage or refresh rate.
+				</p>
 			</div>
-			<div className={styles.linksTitle}>Pages:</div>
+			<div className={styles.linksTitle}>Sections</div>
 			<div className={styles.links}>
 				{filteredNavItems.map((page, index) => (
-					<div
+					<Link
+						href={page.path}
 						key={`${page.path}-${index}`}
 						className={styles.link}
 						onMouseEnter={() => setHoverIndex(index)}
@@ -35,7 +42,7 @@ export default function Home() {
 						}}
 					>
 						{page.label}
-					</div>
+					</Link>
 				))}
 			</div>
 		</div>
