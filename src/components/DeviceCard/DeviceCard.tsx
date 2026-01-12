@@ -52,18 +52,16 @@ export default function DeviceCard({
 			ref={ref}
 			className={`${styles.card} ${open ? styles.open : ""}`}
 			aria-labelledby={`device-${device.id}`}
-			onPointerDown={onPointerDown}
-			onPointerMove={onPointerMove}
-			onPointerUp={onPointerUp}
-			style={
-				open
-					? {
-							transform: `translateX(-50%) scale(1) translate(${pos.x}px, ${pos.y}px)`,
-							touchAction: "none",
-							cursor: "grab",
-					  }
-					: undefined
-			}
+			onPointerDown={open ? onPointerDown : undefined}
+			onPointerMove={open ? onPointerMove : undefined}
+			onPointerUp={open ? onPointerUp : undefined}
+			style={{
+				transform: `translateX(-50%) scale(${
+					open ? 1 : 0.95
+				}) translate(${pos.x}px, ${pos.y}px)`,
+				touchAction: "none",
+				cursor: open ? "grab" : "default",
+			}}
 		>
 			<header className={styles.header}>
 				<div className={styles.flex}>

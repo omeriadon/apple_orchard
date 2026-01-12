@@ -17,14 +17,12 @@
 	opacity: 0;
 	pointer-events: none;
 	transform: translateX(-50%) scale(0.95);
-
 	transition: opacity 80ms ease, transform 80ms ease;
 }
 
 .card.open {
 	opacity: 1;
 	pointer-events: auto;
-	transform: translateX(-50%) scale(1);
 }
 
 .header {

@@ -11,42 +11,38 @@ export default function Page() {
 
 	return (
 		<DevicePage useTimeline>
-			{iPhones.map((device) => (
-				<div className={styles.item} key={device.id} role="listitem">
-					<button
-						type="button"
-						className={styles.itemButton}
-						aria-expanded={openId === device.id}
-						aria-controls={`popup-${device.id}`}
-						onClick={() =>
-							setOpenId(openId === device.id ? null : device.id)
-						}
-						aria-label={`Toggle ${device.name}`}
-					>
-						<MarkerOrPreview
-							id={device.id}
-							familyID={device.familyID}
-						/>
-						<span className={styles.label}>{device.name}</span>
-					</button>
+			{iPhones.map((device) => {
+				const isOpen = openId === device.id;
 
+				return (
 					<div
-						id={`popup-${device.id}`}
-						className={
-							openId === device.id
-								? `${styles.popup} ${styles.open}`
-								: styles.popup
-						}
-						role="dialog"
-						aria-hidden={openId !== device.id}
+						className={styles.item}
+						key={device.id}
+						role="listitem"
 					>
+						<button
+							type="button"
+							className={styles.itemButton}
+							aria-expanded={isOpen}
+							aria-controls={`popup-${device.id}`}
+							onClick={() => setOpenId(isOpen ? null : device.id)}
+							aria-label={`Toggle ${device.name}`}
+						>
+							<MarkerOrPreview
+								id={device.id}
+								familyID={device.familyID}
+							/>
+							<span className={styles.label}>{device.name}</span>
+						</button>
+
 						<IphoneCard
 							device={device}
 							onClose={() => setOpenId(null)}
+							open={isOpen}
 						/>
 					</div>
-				</div>
-			))}
+				);
+			})}
 		</DevicePage>
 	);
 }
