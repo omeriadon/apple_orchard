@@ -8,27 +8,29 @@ import Image from "next/image";
 
 type MarkerOrPreviewProps = {
 	id: string;
-	image?: string;
+	familyID: string;
 };
 
-function MarkerOrPreview({ id, image }: MarkerOrPreviewProps) {
-	if (image) {
-		return (
-			<div className={styles.markerBox}>
-				<Image
-					src={image}
-					alt={id}
-					width={120}
-					height={150}
-					className={styles.previewImg}
-				/>
-			</div>
-		);
-	}
+function MarkerOrPreview({ id, familyID }: MarkerOrPreviewProps) {
+	const primary = `/images/iphones/${id}.png`;
+	const lowercase = `/images/iphones/${id.toLowerCase()}.png`;
+	const familyFallback = `/images/iphones/${familyID}/${id}.png`;
+
+	const [src, setSrc] = useState(primary);
 
 	return (
 		<div className={styles.markerBox}>
-			<div className={styles.marker} />
+			<Image
+				src={src}
+				alt={id}
+				width={120}
+				height={150}
+				className={styles.previewImg}
+				onError={() => {
+					if (src === primary) setSrc(lowercase);
+					else if (src === lowercase) setSrc(familyFallback);
+				}}
+			/>
 		</div>
 	);
 }
@@ -50,7 +52,7 @@ export default function Page() {
 						}
 						aria-label={`Toggle ${device.name}`}
 					>
-						<MarkerOrPreview id={device.id} image={device.image} />
+						<MarkerOrPreview id={device.id} familyID={device.familyID} />
 						<span className={styles.label}>{device.name}</span>
 					</button>
 
