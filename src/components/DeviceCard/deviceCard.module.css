@@ -2,6 +2,7 @@
 	padding: 1rem;
 	padding-top: 0.7rem;
 	max-width: 680px;
+	user-select: none;
 }
 
 .header {
