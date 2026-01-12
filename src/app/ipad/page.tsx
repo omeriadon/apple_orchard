@@ -3,7 +3,7 @@ import { useState } from "react";
 import IphoneCard from "../../components/device/iPhoneCard";
 import { iPhones } from "@/data/iphones";
 import DevicePage from "@/components/DevicePage/DevicePage";
-import devicePageStyles from "@/components/devicePage.module.css";
+import styles from "@/components/DevicePage/devicePage.module.css";
 import Image from "next/image";
 
 type MarkerOrPreviewProps = {
@@ -14,21 +14,21 @@ type MarkerOrPreviewProps = {
 function MarkerOrPreview({ id, image }: MarkerOrPreviewProps) {
 	if (image) {
 		return (
-			<div className={devicePageStyles.markerBox}>
+			<div className={styles.markerBox}>
 				<Image
 					src={image}
 					alt={id}
 					width={120}
 					height={150}
-					className={devicePageStyles.previewImg}
+					className={styles.previewImg}
 				/>
 			</div>
 		);
 	}
 
 	return (
-		<div className={devicePageStyles.markerBox}>
-			<div className={devicePageStyles.marker} />
+		<div className={styles.markerBox}>
+			<div className={styles.marker} />
 		</div>
 	);
 }
@@ -40,13 +40,13 @@ export default function Page() {
 		<DevicePage useTimeline>
 			{iPhones.map((device) => (
 				<div
-					className={devicePageStyles.item}
+					className={styles.item}
 					key={device.id}
 					role="listitem"
 				>
 					<button
 						type="button"
-						className={devicePageStyles.itemButton}
+						className={styles.itemButton}
 						aria-expanded={openId === device.id}
 						aria-controls={`popup-${device.id}`}
 						onClick={() =>
@@ -55,7 +55,7 @@ export default function Page() {
 						aria-label={`Toggle ${device.name}`}
 					>
 						<MarkerOrPreview id={device.id} image={device.image} />
-						<span className={devicePageStyles.label}>
+						<span className={styles.label}>
 							{device.name}
 						</span>
 					</button>
@@ -64,8 +64,8 @@ export default function Page() {
 						id={`popup-${device.id}`}
 						className={
 							openId === device.id
-								? `${devicePageStyles.popup} ${devicePageStyles.open}`
-								: devicePageStyles.popup
+								? `${styles.popup} ${styles.open}`
+								: styles.popup
 						}
 						role="dialog"
 						aria-hidden={openId !== device.id}

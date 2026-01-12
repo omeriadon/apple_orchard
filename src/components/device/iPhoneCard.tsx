@@ -13,7 +13,7 @@ import {
 	HardDrive,
 } from "lucide-react";
 import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
-import styles from "@/components/deviceCardRow.module.css";
+import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
 
 export default function IphoneCard({
 	device,
