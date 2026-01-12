@@ -17,9 +17,7 @@
 	opacity: 0;
 	pointer-events: none;
 	transform: translateX(-50%) scale(0.95);
-	transition:
-		opacity 80ms ease,
-		transform 80ms ease;
+	transition: opacity 80ms ease, transform 80ms ease;
 }
 
 .card.open {
