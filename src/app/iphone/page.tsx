@@ -9,12 +9,14 @@ import ScrollTimeline from "@/components/ScrollTimeline";
 
 function MarkerOrPreview({
 	id,
+	image,
 	ariaExpanded,
 	ariaControls,
 	onClick,
 	ariaLabel,
 }: {
 	id: string;
+	image?: string;
 	ariaExpanded: boolean;
 	ariaControls: string;
 	onClick: () => void;
@@ -23,6 +25,12 @@ function MarkerOrPreview({
 	const [foundSrc, setFoundSrc] = useState<string | null>(null);
 
 	useEffect(() => {
+		// If data provides an `image` path, use it directly and skip probing
+		if (image) {
+			setFoundSrc(image);
+			return;
+		}
+
 		let cancelled = false;
 		const exts = ["webp", "png", "jpg"];
 		const variants = [id, id.toLowerCase(), id.replace(/\s+/g, "")];
@@ -108,11 +116,12 @@ export default function Page() {
 					>
 						<MarkerOrPreview
 							id={device.id}
+							image={device.image}
 							ariaExpanded={openId === device.id}
 							ariaControls={`popup-${device.id}`}
 							onClick={() =>
 								setOpenId(
-									openId === device.id ? null : device.id
+									openId === device.id ? null : device.id,
 								)
 							}
 							ariaLabel={`Toggle ${device.name}`}

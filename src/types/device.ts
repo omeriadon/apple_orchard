@@ -6,6 +6,8 @@ export const DeviceSchema = z.object({
 	name: z.string(),
 	introduced: z.number().int(),
 	supportedUntil: z.number().int(),
+	// Optional image path (relative to /public). Use a string like '/images/iphones/17.png'
+	image: z.string().optional(),
 });
 
 export type Device = z.infer<typeof DeviceSchema>;
