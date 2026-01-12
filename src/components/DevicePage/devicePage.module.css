@@ -64,16 +64,6 @@
 	display: none;
 }
 
-.timeline::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 90px;
-	height: 2px;
-	background: rgba(255, 255, 255, 0.06);
-}
-
 .item {
 	position: relative;
 	display: flex;
@@ -115,7 +105,7 @@
 	border-radius: 30px;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 180ms ease, transform 180ms ease;
+	transition: opacity 80ms ease, transform 80ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 	z-index: 20;
