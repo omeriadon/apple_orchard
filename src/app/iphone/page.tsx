@@ -64,7 +64,7 @@ export default function Page() {
 									return next;
 								});
 								setActiveId((cur) =>
-									cur === device.id ? null : cur,
+									cur === device.id ? null : cur
 								);
 							}}
 						/>
