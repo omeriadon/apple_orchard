@@ -2,14 +2,15 @@ import React from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 import { CalendarPlus, CalendarMinus } from "lucide-react";
+import { DeviceCardRow, type DeviceCardRowProps } from "./DeviceCardRow";
 
 type Props = {
 	device: Device;
-	children?: React.ReactNode;
+	infoRows?: DeviceCardRowProps[];
 	onClose?: () => void;
 };
 
-export default function DeviceCard({ device, children, onClose }: Props) {
+export default function DeviceCard({ device, infoRows = [], onClose }: Props) {
 	return (
 		<article
 			className={styles.card}
@@ -40,7 +41,13 @@ export default function DeviceCard({ device, children, onClose }: Props) {
 				</div>
 			</header>
 
-			<section className={styles.body}>{children}</section>
+			<section className={styles.body}>
+				<div className={styles.bodyGrid}>
+					{infoRows.map((row, index) => (
+						<DeviceCardRow key={`${row.title}-${index}`} {...row} />
+					))}
+				</div>
+			</section>
 		</article>
 	);
 }

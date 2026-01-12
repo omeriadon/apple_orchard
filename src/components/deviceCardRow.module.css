@@ -1,0 +1,31 @@
+.infoRow {
+	padding: 0.55rem 0rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.infoRow:last-child {
+	padding-bottom: 0;
+}
+
+.infoIcon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.infoTitle {
+	font-size: 0.65rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	opacity: 0.6;
+	flex: 1;
+}
+
+.infoValue {
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-align: right;
+}

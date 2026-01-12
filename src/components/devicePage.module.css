@@ -109,10 +109,6 @@
 	transition: all 0.15s ease;
 }
 
-.markerBox:hover {
-	transform: scale(1.05);
-}
-
 .marker {
 	width: 40px;
 	height: 40px;
@@ -121,17 +117,11 @@
 	border: 2px solid rgba(0, 0, 0, 0.12);
 	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 	cursor: pointer;
-	transition: transform 0.15s ease, box-shadow 0.15s ease;
 	overflow: hidden;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 }
-
-.marker:hover {
-	transform: translateY(-2px) scale(1.08);
-}
-
 .marker img,
 .marker .marker-img {
 	max-width: 70%;
@@ -162,9 +152,7 @@
 }
 
 .label {
-	margin-top: 0.5rem;
-	color: #eaeaea;
-	font-size: 0.9rem;
+	margin-top: 0.3rem;
 	text-align: center;
 }
 
@@ -179,7 +167,9 @@
 	border-radius: 30px;
 	opacity: 0;
 	pointer-events: none;
-	transition: opacity 180ms ease, transform 180ms ease;
+	transition:
+		opacity 180ms ease,
+		transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 	z-index: 20;

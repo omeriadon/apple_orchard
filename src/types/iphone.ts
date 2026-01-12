@@ -15,7 +15,7 @@ const iPhoneSchema = DeviceSchema.extend({
 	portType: z.enum(["lightning", "usbC"]),
 	magsafe: z.boolean(),
 
-	authentication: z.enum(["faceID", "touchID", "passcode"]),
+	authentication: z.enum(["faceID", "touchID"]),
 
 	batteryMah: z.number().int(),
 
