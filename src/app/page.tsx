@@ -1,5 +1,3 @@
-import styles from "./home.module.css";
-
 const items = Array.from({ length: 10 }, (_, i) => `Item ${i + 1}`);
 
 export default function Home() {

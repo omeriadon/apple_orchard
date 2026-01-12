@@ -1,6 +1,6 @@
 import { iPhone } from "@/types/iphone";
 
-export const iPhones: iPhone[] = [
+const _iPhones: iPhone[] = [
 	//MARK: - 17
 	{
 		id: "17ProMax",
@@ -332,3 +332,5 @@ export const iPhones: iPhone[] = [
 		amountOfCameras: 2,
 	},
 ];
+
+export const iPhones = _iPhones.reverse();

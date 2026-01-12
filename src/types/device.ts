@@ -7,3 +7,5 @@ export const DeviceSchema = z.object({
 	introduced: z.number().int(),
 	supportedUntil: z.number().int(),
 });
+
+export type Device = z.infer<typeof DeviceSchema>;

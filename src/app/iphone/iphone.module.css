@@ -1,0 +1,108 @@
+.iphone-page {
+	/* Removed outer padding so content aligns to edges */
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto; /* fill available vertical space inside main */
+	min-height: 0;
+}
+
+.timeline {
+	display: flex;
+	gap: 2rem;
+	align-items: flex-start;
+	position: relative;
+	padding-top: 1rem; /* top padding moved here */
+	padding-left: 0;
+	padding-right: 0;
+	overflow: auto; /* allow popup content to scroll inside timeline if needed */
+	/* center the line vertically relative to markers */
+	min-height: 120px;
+	flex: 1 1 auto;
+	/* hide native scrollbars - we'll replace with a custom one later */
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+.timeline::-webkit-scrollbar {
+	display: none;
+}
+
+/* horizontal baseline */
+.timeline::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 36px;
+	height: 2px;
+	background: rgba(255, 255, 255, 0.06);
+	z-index: 0;
+}
+
+.item {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 120px;
+}
+
+.marker {
+	width: 16px;
+	height: 16px;
+	border-radius: 999px;
+	background: #fff;
+	border: 2px solid rgba(0, 0, 0, 0.12);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+	cursor: pointer;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.marker:hover {
+	transform: translateY(-2px) scale(1.08);
+}
+
+.label {
+	margin-top: 0.5rem;
+	color: #eaeaea;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+/* popup/card that appears below the marker */
+.popup {
+	position: absolute;
+	top: 56px;
+	left: 50%;
+	transform: translateX(-50%) scale(0.98);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 180ms ease, transform 180ms ease;
+	width: 360px;
+	max-width: calc(100vw - 3rem);
+}
+
+.open {
+	opacity: 1;
+	transform: translateX(-50%) scale(1);
+	pointer-events: auto;
+}
+
+/* small close button */
+.close {
+	position: absolute;
+	right: 8px;
+	top: 8px;
+	background: transparent;
+	border: none;
+	color: rgba(255, 255, 255, 0.8);
+	cursor: pointer;
+	font-size: 0.9rem;
+}
+
+/* make the card inside popup look good by reducing its width */
+.card-wrapper {
+	padding-top: 0.25rem;
+}

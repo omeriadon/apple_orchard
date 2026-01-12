@@ -2,11 +2,11 @@ import DeviceCard from "../../components/DeviceCard";
 import type { Device } from "@/types/device";
 
 const sample: Device = {
-	id: "macbook-pro-14",
-	familyID: "macbook-pro",
-	name: "MacBook Pro 14",
-	introduced: 2023,
-	supportedUntil: 2032,
+	id: "ipad-air-5",
+	familyID: "ipad-air",
+	name: "iPad Air (5th gen)",
+	introduced: 2022,
+	supportedUntil: 2028,
 };
 
 export default function Page() {
@@ -14,7 +14,7 @@ export default function Page() {
 		<main>
 			<section style={{ padding: "2rem 0" }}>
 				<DeviceCard device={sample}>
-					<div>Placeholder details for Mac.</div>
+					<div>Placeholder details for iPad.</div>
 				</DeviceCard>
 			</section>
 		</main>

@@ -1,0 +1,34 @@
+.card {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.04);
+	padding: 1rem;
+	border-radius: 8px;
+	max-width: 680px;
+	margin: 0 auto;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 1rem;
+}
+
+.header h2 {
+	margin: 0;
+	font-size: 1.25rem;
+}
+
+.meta {
+	display: flex;
+	gap: 1rem;
+	font-size: 0.875rem;
+	opacity: 0.8;
+}
+
+.body {
+	margin-top: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}

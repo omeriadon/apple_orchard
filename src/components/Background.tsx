@@ -14,7 +14,7 @@ const gradients: Record<string, string> = NAV_ITEMS.reduce(
 
 export default function Background() {
 	const pathname = usePathname();
-	const idCounter = useRef(0);
+	const idCounter = useRef(1);
 	// Refs for cancellation and coordination between quick navigations
 	const raf1Ref = useRef<number | null>(null);
 	const raf2Ref = useRef<number | null>(null);
@@ -24,11 +24,12 @@ export default function Background() {
 
 	const [layers, setLayers] = useState<
 		{ id: string; path: string; gradient: string; visible: boolean }[]
-	>([
+	>(() => [
 		{
-			id: `layer-${idCounter.current++}`,
+			id: `layer-0`,
 			path: pathname,
-			gradient: gradients[pathname as keyof typeof gradients],
+			gradient:
+				gradients[pathname as keyof typeof gradients] ?? gradients["/"],
 			visible: true,
 		},
 	]);
@@ -95,7 +96,7 @@ export default function Background() {
 			if (raf2Ref.current) cancelAnimationFrame(raf2Ref.current);
 			if (cleanupRef.current) clearTimeout(cleanupRef.current);
 		};
-	}, [pathname]);
+	}, [pathname, layers]);
 
 	return (
 		<>
