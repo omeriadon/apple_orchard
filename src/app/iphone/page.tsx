@@ -70,16 +70,10 @@ export default function Page() {
 						role="dialog"
 						aria-hidden={openId !== device.id}
 					>
-						<div className={devicePageStyles["card-wrapper"]}>
-							<button
-								type="button"
-								className={devicePageStyles.close}
-								onClick={() => setOpenId(null)}
-							>
-								✕
-							</button>
-							<IphoneCard device={device} />
-						</div>
+						<IphoneCard
+							device={device}
+							onClose={() => setOpenId(null)}
+						/>
 					</div>
 				</div>
 			))}

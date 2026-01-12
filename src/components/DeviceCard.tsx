@@ -6,16 +6,28 @@ import { CalendarPlus, CalendarMinus } from "lucide-react";
 type Props = {
 	device: Device;
 	children?: React.ReactNode;
+	onClose?: () => void;
 };
 
-export default function DeviceCard({ device, children }: Props) {
+export default function DeviceCard({ device, children, onClose }: Props) {
 	return (
 		<article
 			className={styles.card}
 			aria-labelledby={`device-${device.id}`}
 		>
 			<header className={styles.header}>
-				<h2 id={`device-${device.id}`}>{device.name}</h2>
+				<div className={styles.flex}>
+					<h2 id={`device-${device.id}`}>{device.name}</h2>
+					{onClose ? (
+						<button
+							type="button"
+							className={styles.close}
+							onClick={onClose}
+						>
+							✕
+						</button>
+					) : null}
+				</div>
 				<div className={styles.meta}>
 					<span className={styles.meta2}>
 						<CalendarPlus size={16} />

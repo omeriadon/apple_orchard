@@ -2,9 +2,15 @@ import DeviceCard from "../DeviceCard";
 import styles from "../deviceCard.module.css";
 import { iPhone } from "@/types/iphone";
 
-export default function IphoneCard({ device }: { device: iPhone }) {
+export default function IphoneCard({
+	device,
+	onClose,
+}: {
+	device: iPhone;
+	onClose?: () => void;
+}) {
 	return (
-		<DeviceCard device={device}>
+		<DeviceCard device={device} onClose={onClose}>
 			<div className={styles.grid}>
 				<div>
 					<strong>Screen</strong>
