@@ -31,13 +31,13 @@ export default function DevicePage({
 				className={`${styles.blurEdge} ${styles.blurLeft}`}
 				direction="left"
 				blurIntensity={1}
-				blurLayers={3}
+				blurLayers={5}
 			/>
 			<ProgressiveBlur
 				className={`${styles.blurEdge} ${styles.blurRight}`}
 				direction="right"
 				blurIntensity={1}
-				blurLayers={3}
+				blurLayers={5}
 			/>
 		</section>
 	);

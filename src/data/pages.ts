@@ -1,13 +1,5 @@
 export const navItems = [
 	{
-		path: "/",
-		label: "Apple Orchard",
-		slot: "left",
-		gradient:
-			"linear-gradient(180deg, rgba(33.6498, 33.6498, 33.6498, 1.0), rgba(0, 0, 0, 1.0))",
-		hoverColor: "rgba(33.6498, 33.6498, 33.6498, 1.0)",
-	},
-	{
 		path: "/iphone",
 		label: "iPhone",
 		slot: "center",
@@ -30,13 +22,6 @@ export const navItems = [
 		gradient:
 			"linear-gradient(180deg, rgba(113.0568, 24.03069, 40.8408, 1.0), rgba(33.0276, 4.455105, 11.81313, 1.0))",
 		hoverColor: "rgba(113.0568, 24.03069, 40.8408, 1.0)",
-	},
-	{
-		path: "/about",
-		label: "About",
-		slot: "right",
-		gradient: "linear-gradient(180deg, rgba(30,30,30,1), rgba(12,12,12,1))",
-		hoverColor: "rgba(30,30,30,1)",
 	},
 ];
 

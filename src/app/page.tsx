@@ -7,10 +7,6 @@ import Link from "next/link";
 export default function Home() {
 	const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
-	const filteredNavItems = navItems.filter(
-		(page) => page.path !== "/" && page.path !== "/about"
-	);
-
 	return (
 		<div className={styles.main}>
 			<div className={styles.top}>
@@ -27,7 +23,7 @@ export default function Home() {
 			</div>
 			<div className={styles.linksTitle}>Sections</div>
 			<div className={styles.links}>
-				{filteredNavItems.map((page, index) => (
+				{navItems.map((page, index) => (
 					<Link
 						href={page.path}
 						key={`${page.path}-${index}`}

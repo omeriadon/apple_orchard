@@ -3,22 +3,14 @@ import styles from "./navbar.module.css";
 import { navItems } from "../../data/pages";
 
 export default function Navbar() {
-	const left = navItems.filter((i) => i.slot === "left");
 	const center = navItems.filter((i) => i.slot === "center");
-	const right = navItems.filter((i) => i.slot === "right");
 
 	return (
 		<nav className={styles.navbar}>
 			<div className={styles.left}>
-				{left.map((item) => (
-					<Link
-						key={item.path}
-						href={item.path}
-						className={styles.title}
-					>
-						{item.label}
-					</Link>
-				))}
+				<Link href="/" className={styles.title} key="/">
+					Apple Orchard
+				</Link>
 			</div>
 
 			<div className={styles.center}>
@@ -36,15 +28,9 @@ export default function Navbar() {
 			</div>
 
 			<div className={styles.right}>
-				{right.map((item) => (
-					<Link
-						key={item.path}
-						href={item.path}
-						className={styles.link}
-					>
-						{item.label}
-					</Link>
-				))}
+				<Link href="/about" className={styles.link} key="/about">
+					About
+				</Link>
 			</div>
 		</nav>
 	);

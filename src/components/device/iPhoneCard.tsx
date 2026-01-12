@@ -122,7 +122,16 @@ export default function IphoneCard({
 		},
 		{
 			title: "Cameras",
-			value: `${device.amountOfCameras}`,
+			value: (() => {
+				if (device.amountOfCameras < 2) {
+					return (
+						<span className={styles.bad}>
+							{device.amountOfCameras}
+						</span>
+					);
+				}
+				return <span>{device.amountOfCameras}</span>;
+			})(),
 			icon: Camera,
 		},
 	];
