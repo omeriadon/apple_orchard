@@ -69,7 +69,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 80px;
+	top: 90px;
 	height: 2px;
 	background: rgba(255, 255, 255, 0.06);
 }
@@ -99,58 +99,6 @@
 	transform: scale(1.1);
 }
 
-.markerBox {
-	width: 120px;
-	height: 150px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 0.5rem;
-	transition: all 0.15s ease;
-}
-
-.marker {
-	width: 40px;
-	height: 40px;
-	border-radius: 999px;
-	background: #fff;
-	border: 2px solid rgba(0, 0, 0, 0.12);
-	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-	cursor: pointer;
-	overflow: hidden;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-.marker img,
-.marker .marker-img {
-	max-width: 70%;
-	max-height: 70%;
-	display: block;
-	margin: auto;
-	object-fit: contain;
-	border-radius: 999px;
-}
-
-.preview {
-	width: 120px;
-	height: 150px;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	background: transparent;
-	border: none;
-	padding: 0;
-	cursor: pointer;
-}
-
-.previewImg {
-	max-height: 100%;
-	max-width: 100%;
-	object-fit: contain;
-	border-radius: 6px;
-}
-
 .label {
 	margin-top: 0.3rem;
 	text-align: center;
@@ -167,9 +115,7 @@
 	border-radius: 30px;
 	opacity: 0;
 	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
+	transition: opacity 180ms ease, transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 	z-index: 20;
