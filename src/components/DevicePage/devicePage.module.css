@@ -115,7 +115,7 @@
 	border-radius: 999px;
 	background: #fff;
 	border: 2px solid rgba(0, 0, 0, 0.12);
-	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 	overflow: hidden;
 	display: inline-flex;
@@ -167,9 +167,7 @@
 	border-radius: 30px;
 	opacity: 0;
 	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
+	transition: opacity 180ms ease, transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 	z-index: 20;

@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IphoneCard from "../../components/device/iPhoneCard";
 import { iPhones } from "@/data/iphones";
 import DevicePage from "@/components/DevicePage/DevicePage";
@@ -16,19 +16,35 @@ function MarkerOrPreview({ id, familyID }: MarkerOrPreviewProps) {
 	const lowercase = `/images/iphones/${id.toLowerCase()}.png`;
 	const familyFallback = `/images/iphones/${familyID}/${id}.png`;
 
-	const [src, setSrc] = useState(primary);
+	const attempts = [primary, lowercase, familyFallback];
+	const [attemptIndex, setAttemptIndex] = useState(0);
+	const [failed, setFailed] = useState(false);
+
+	useEffect(() => {
+		setAttemptIndex(0);
+		setFailed(false);
+	}, [id, familyID]);
+
+	if (failed) {
+		return (
+			<div className={styles.markerBox}>
+				<div className={styles.marker} />
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.markerBox}>
 			<Image
-				src={src}
+				src={attempts[attemptIndex]}
 				alt={id}
 				width={120}
 				height={150}
 				className={styles.previewImg}
 				onError={() => {
-					if (src === primary) setSrc(lowercase);
-					else if (src === lowercase) setSrc(familyFallback);
+					if (attemptIndex < attempts.length - 1)
+						setAttemptIndex((i) => i + 1);
+					else setFailed(true);
 				}}
 			/>
 		</div>
@@ -52,7 +68,10 @@ export default function Page() {
 						}
 						aria-label={`Toggle ${device.name}`}
 					>
-						<MarkerOrPreview id={device.id} familyID={device.familyID} />
+						<MarkerOrPreview
+							id={device.id}
+							familyID={device.familyID}
+						/>
 						<span className={styles.label}>{device.name}</span>
 					</button>
 

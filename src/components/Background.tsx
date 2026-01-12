@@ -7,10 +7,13 @@ import { navItems } from "../data/pages";
 const DEFAULT_HOME_GRADIENT =
 	"linear-gradient(180deg, rgba(33.6498, 33.6498, 33.6498, 1.0), rgba(0, 0, 0, 1.0))";
 
-const gradients: Record<string, string> = navItems.reduce((acc, it) => {
-	acc[it.path] = it.gradient;
-	return acc;
-}, {} as Record<string, string>);
+const gradients: Record<string, string> = navItems.reduce(
+	(acc, it) => {
+		acc[it.path] = it.gradient;
+		return acc;
+	},
+	{} as Record<string, string>,
+);
 
 if (!gradients["/"]) gradients["/"] = DEFAULT_HOME_GRADIENT;
 
@@ -76,8 +79,8 @@ export default function Background() {
 					prev.map((layer) =>
 						layer.path === pathname
 							? { ...layer, visible: true }
-							: { ...layer, visible: false }
-					)
+							: { ...layer, visible: false },
+					),
 				);
 			});
 		});
@@ -85,7 +88,7 @@ export default function Background() {
 		cleanupRef.current = window.setTimeout(() => {
 			if (animationIdRef.current !== animationId) return;
 			setLayers((prev) =>
-				prev.filter((layer) => layer.path === pathname)
+				prev.filter((layer) => layer.path === pathname),
 			);
 			cleanupRef.current = null;
 		}, TRANSITION_MS + 100);
