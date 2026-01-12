@@ -38,27 +38,11 @@
 	color: white;
 	text-decoration: none;
 	font-weight: 500;
-	transition: color 0.3s;
+	transition: all 0.3s;
 }
 
 .link:hover {
-	color: var(--hover-color, #f0a500);
-}
-
-/* Active nav item should not change on hover; keep the color equal to first gradient stop */
-.link.active {
-	color: var(--hover-color, #fff);
-	cursor: default;
-}
-
-.link.active:hover {
-	color: var(--hover-color, #fff);
-}
-
-/* Title active state */
-.title.active {
-	color: var(--hover-color, #fff);
-	cursor: default;
+	transform: scale(1.1);
 }
 
 .title {
