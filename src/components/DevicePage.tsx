@@ -4,12 +4,29 @@ import { ProgressiveBlur } from "@/components/motion-primitives/progressive-blur
 
 type Props = {
 	children: React.ReactNode;
+	useTimeline?: boolean;
+	timelineClassName?: string;
 };
 
-export default function DevicePage({ children }: Props) {
+export default function DevicePage({
+	children,
+	useTimeline = false,
+	timelineClassName = "",
+}: Props) {
 	return (
 		<section className={styles.container}>
-			<div className={styles.content}>{children}</div>
+			<div className={styles.content}>
+				{useTimeline ? (
+					<div
+						className={`${styles.timeline} ${timelineClassName}`.trim()}
+						role="list"
+					>
+						{children}
+					</div>
+				) : (
+					children
+				)}
+			</div>
 			<ProgressiveBlur
 				className={`${styles.blurEdge} ${styles.blurLeft}`}
 				direction="left"

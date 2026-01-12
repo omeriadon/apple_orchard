@@ -1,5 +1,5 @@
-import DeviceCard from "./DeviceCard";
-import styles from "./iphone-card.module.css";
+import DeviceCard from "../DeviceCard";
+import styles from "../deviceCard.module.css";
 import { iPhone } from "@/types/iphone";
 
 export default function IphoneCard({ device }: { device: iPhone }) {

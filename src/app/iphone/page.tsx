@@ -1,11 +1,10 @@
 "use client";
 import { useState } from "react";
-import IphoneCard from "../../components/iPhoneCard";
+import IphoneCard from "../../components/device/iPhoneCard";
 import { iPhones } from "@/data/iphones";
-import timelineStyles from "@/components/scroll-timeline.module.css";
 import DevicePage from "@/components/DevicePage";
+import devicePageStyles from "@/components/devicePage.module.css";
 import Image from "next/image";
-import ScrollTimeline from "@/components/ScrollTimeline";
 
 type MarkerOrPreviewProps = {
 	id: string;
@@ -15,21 +14,21 @@ type MarkerOrPreviewProps = {
 function MarkerOrPreview({ id, image }: MarkerOrPreviewProps) {
 	if (image) {
 		return (
-			<div className={timelineStyles.markerBox}>
+			<div className={devicePageStyles.markerBox}>
 				<Image
 					src={image}
 					alt={id}
 					width={120}
 					height={150}
-					className={timelineStyles.previewImg}
+					className={devicePageStyles.previewImg}
 				/>
 			</div>
 		);
 	}
 
 	return (
-		<div className={timelineStyles.markerBox}>
-			<div className={timelineStyles.marker} />
+		<div className={devicePageStyles.markerBox}>
+			<div className={devicePageStyles.marker} />
 		</div>
 	);
 }
@@ -38,59 +37,52 @@ export default function Page() {
 	const [openId, setOpenId] = useState<string | null>(null);
 
 	return (
-		<DevicePage>
-			<ScrollTimeline>
-				{iPhones.map((device) => (
-					<div
-						className={timelineStyles.item}
-						key={device.id}
-						role="listitem"
+		<DevicePage useTimeline>
+			{iPhones.map((device) => (
+				<div
+					className={devicePageStyles.item}
+					key={device.id}
+					role="listitem"
+				>
+					<button
+						type="button"
+						className={devicePageStyles.itemButton}
+						aria-expanded={openId === device.id}
+						aria-controls={`popup-${device.id}`}
+						onClick={() =>
+							setOpenId(openId === device.id ? null : device.id)
+						}
+						aria-label={`Toggle ${device.name}`}
 					>
-						<button
-							type="button"
-							className={timelineStyles.itemButton}
-							aria-expanded={openId === device.id}
-							aria-controls={`popup-${device.id}`}
-							onClick={() =>
-								setOpenId(
-									openId === device.id ? null : device.id
-								)
-							}
-							aria-label={`Toggle ${device.name}`}
-						>
-							<MarkerOrPreview
-								id={device.id}
-								image={device.image}
-							/>
-							<span className={timelineStyles.label}>
-								{device.name}
-							</span>
-						</button>
+						<MarkerOrPreview id={device.id} image={device.image} />
+						<span className={devicePageStyles.label}>
+							{device.name}
+						</span>
+					</button>
 
-						<div
-							id={`popup-${device.id}`}
-							className={
-								openId === device.id
-									? `${timelineStyles.popup} ${timelineStyles.open}`
-									: timelineStyles.popup
-							}
-							role="dialog"
-							aria-hidden={openId !== device.id}
-						>
-							<div>
-								<button
-									type="button"
-									className={timelineStyles.close}
-									onClick={() => setOpenId(null)}
-								>
-									✕
-								</button>
-								<IphoneCard device={device} />
-							</div>
+					<div
+						id={`popup-${device.id}`}
+						className={
+							openId === device.id
+								? `${devicePageStyles.popup} ${devicePageStyles.open}`
+								: devicePageStyles.popup
+						}
+						role="dialog"
+						aria-hidden={openId !== device.id}
+					>
+						<div className={devicePageStyles["card-wrapper"]}>
+							<button
+								type="button"
+								className={devicePageStyles.close}
+								onClick={() => setOpenId(null)}
+							>
+								✕
+							</button>
+							<IphoneCard device={device} />
 						</div>
 					</div>
-				))}
-			</ScrollTimeline>
+				</div>
+			))}
 		</DevicePage>
 	);
 }
