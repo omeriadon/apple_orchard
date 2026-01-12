@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { DeviceSchema } from "./device";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const iPhoneSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
 	screenSize: z.number(),

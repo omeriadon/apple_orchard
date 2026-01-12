@@ -7,38 +7,9 @@
 	min-height: 0;
 }
 
-.timeline {
-	display: flex;
-	gap: 2rem;
-	align-items: flex-start;
-	position: relative;
-	padding-top: 1rem; /* top padding moved here */
-	padding-left: 0;
-	padding-right: 0;
-	overflow: auto; /* allow popup content to scroll inside timeline if needed */
-	/* center the line vertically relative to markers */
-	min-height: 120px;
-	flex: 1 1 auto;
-	/* hide native scrollbars - we'll replace with a custom one later */
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
-}
+/* Timeline styles are now provided by the shared `ScrollTimeline` component */
 
-.timeline::-webkit-scrollbar {
-	display: none;
-}
-
-/* horizontal baseline */
-.timeline::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 36px;
-	height: 2px;
-	background: rgba(255, 255, 255, 0.06);
-	z-index: 0;
-}
+/* Keep page-specific overrides here if needed */
 
 .item {
 	position: relative;
@@ -64,6 +35,13 @@
 	transform: translateY(-2px) scale(1.08);
 }
 
+.marker img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+	border-radius: 999px;
+}
 .label {
 	margin-top: 0.5rem;
 	color: #eaeaea;

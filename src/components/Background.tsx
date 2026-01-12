@@ -15,12 +15,12 @@ const gradients: Record<string, string> = NAV_ITEMS.reduce(
 export default function Background() {
 	const pathname = usePathname();
 	const idCounter = useRef(1);
-	// Refs for cancellation and coordination between quick navigations
+
 	const raf1Ref = useRef<number | null>(null);
 	const raf2Ref = useRef<number | null>(null);
 	const cleanupRef = useRef<number | null>(null);
 	const animationIdRef = useRef(0);
-	const TRANSITION_MS = 2000; // must match the CSS transition duration
+	const TRANSITION_MS = 2000; 
 
 	const [layers, setLayers] = useState<
 		{ id: string; path: string; gradient: string; visible: boolean }[]
@@ -38,7 +38,7 @@ export default function Background() {
 		const currentGradient =
 			gradients[pathname as keyof typeof gradients] || gradients["/"];
 
-		// If already showing and visible, do nothing
+
 		if (
 			layers.length &&
 			layers[layers.length - 1].path === pathname &&
@@ -48,7 +48,7 @@ export default function Background() {
 
 		const animationId = ++animationIdRef.current;
 
-		// Add layer if it's not already present
+
 		setLayers((prev) => {
 			if (prev.length && prev[prev.length - 1].path === pathname)
 				return prev;
@@ -64,7 +64,6 @@ export default function Background() {
 			];
 		});
 
-		// Cancel previous scheduled frames/timeouts so they don't clobber newer animations
 		if (raf1Ref.current) cancelAnimationFrame(raf1Ref.current);
 		if (raf2Ref.current) cancelAnimationFrame(raf2Ref.current);
 		if (cleanupRef.current) clearTimeout(cleanupRef.current);
