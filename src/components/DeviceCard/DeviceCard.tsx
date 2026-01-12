@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 import { CalendarPlus, CalendarMinus } from "lucide-react";
@@ -11,13 +11,59 @@ type Props = {
 	device: Device;
 	infoRows?: DeviceCardRowProps[];
 	onClose?: () => void;
+	open: boolean;
 };
 
-export default function DeviceCard({ device, infoRows = [], onClose }: Props) {
+export default function DeviceCard({
+	device,
+	infoRows = [],
+	onClose,
+	open,
+}: Props) {
+	const ref = useRef<HTMLElement | null>(null);
+	const [pos, setPos] = useState({ x: 0, y: 0 });
+	const offset = useRef({ x: 0, y: 0 });
+
+	const onPointerDown = (e: React.PointerEvent) => {
+		if (!open) return;
+		ref.current?.setPointerCapture(e.pointerId);
+		offset.current = {
+			x: e.clientX - pos.x,
+			y: e.clientY - pos.y,
+		};
+	};
+
+	const onPointerMove = (e: React.PointerEvent) => {
+		if (!open) return;
+		if (!ref.current?.hasPointerCapture(e.pointerId)) return;
+
+		setPos({
+			x: e.clientX - offset.current.x,
+			y: e.clientY - offset.current.y,
+		});
+	};
+
+	const onPointerUp = (e: React.PointerEvent) => {
+		ref.current?.releasePointerCapture(e.pointerId);
+	};
+
 	return (
 		<article
-			className={styles.card}
+			ref={ref}
+			className={`${styles.card} ${open ? styles.open : ""}`}
 			aria-labelledby={`device-${device.id}`}
+			onPointerDown={onPointerDown}
+			onPointerMove={onPointerMove}
+			onPointerUp={onPointerUp}
+			style={
+				open
+					? {
+							transform: `translateX(-50%) scale(1) translate(${pos.x}px, ${pos.y}px)`,
+							touchAction: "none",
+							cursor: "grab",
+					  }
+					: undefined
+			}
 		>
 			<header className={styles.header}>
 				<div className={styles.flex}>

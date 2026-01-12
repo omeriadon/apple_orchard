@@ -18,9 +18,11 @@ import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
 export default function IphoneCard({
 	device,
 	onClose,
+	open,
 }: {
 	device: iPhone;
 	onClose?: () => void;
+	open: boolean;
 }) {
 	const infoRows: DeviceCardRowProps[] = [
 		{
@@ -30,58 +32,48 @@ export default function IphoneCard({
 		},
 		{
 			title: "Brightness",
-			value: (() => {
-				if (device.maxBrightness < 3000) {
-					return (
-						<span className={styles.old}>
-							{device.maxBrightness} nits
-						</span>
-					);
-				}
-				return <span>{device.maxBrightness} nits</span>;
-			})(),
+			value:
+				device.maxBrightness < 3000 ? (
+					<span className={styles.old}>
+						{device.maxBrightness} nits
+					</span>
+				) : (
+					<span>{device.maxBrightness} nits</span>
+				),
 			icon: Sun,
 		},
 		{
 			title: "Display Type",
-			value: (() => {
-				switch (device.proMotion) {
-					case false:
-						return <span className={styles.old}>60hz</span>;
-
-					case true:
-						return <div>ProMotion</div>;
-				}
-			})(),
+			value: device.proMotion ? (
+				<div>ProMotion</div>
+			) : (
+				<span className={styles.old}>60hz</span>
+			),
 			icon: RefreshCcw,
 		},
 		{
 			title: "CPU",
-			value: `${device.processor}`,
+			value: device.processor,
 			icon: Cpu,
 		},
 		{
 			title: "RAM",
-			value: (() => {
-				if (device.ram < 8) {
-					return <span className={styles.old}>{device.ram} GB</span>;
-				}
-				return <span>{device.ram} GB</span>;
-			})(),
+			value:
+				device.ram < 8 ? (
+					<span className={styles.old}>{device.ram} GB</span>
+				) : (
+					<span>{device.ram} GB</span>
+				),
 			icon: MemoryStick,
 		},
 		{
 			title: "Storage",
-			value: (() => {
-				if (device.baseStorage < 256) {
-					return (
-						<span className={styles.old}>
-							{device.baseStorage} GB
-						</span>
-					);
-				}
-				return <span>{device.baseStorage} GB</span>;
-			})(),
+			value:
+				device.baseStorage < 256 ? (
+					<span className={styles.old}>{device.baseStorage} GB</span>
+				) : (
+					<span>{device.baseStorage} GB</span>
+				),
 			icon: HardDrive,
 		},
 		{
@@ -91,50 +83,42 @@ export default function IphoneCard({
 		},
 		{
 			title: "Port",
-			value: (() => {
-				switch (device.portType) {
-					case "lightning":
-						return <span className={styles.old}>Lightning</span>;
-
-					case "usbC":
-						return <div>USB-C</div>;
-
-					default:
-						return null;
-				}
-			})(),
+			value:
+				device.portType === "lightning" ? (
+					<span className={styles.old}>Lightning</span>
+				) : (
+					<div>USB-C</div>
+				),
 			icon: Plug,
 		},
 		{
 			title: "Authentication",
-			value: (() => {
-				switch (device.authentication) {
-					case "touchID":
-						return <span className={styles.old}>Touch ID</span>;
-					case "faceID":
-						return <div>Face ID</div>;
-
-					default:
-						return null;
-				}
-			})(),
+			value:
+				device.authentication === "touchID" ? (
+					<span className={styles.old}>Touch ID</span>
+				) : (
+					<div>Face ID</div>
+				),
 			icon: ScanFace,
 		},
 		{
 			title: "Cameras",
-			value: (() => {
-				if (device.amountOfCameras < 2) {
-					return (
-						<span className={styles.bad}>
-							{device.amountOfCameras}
-						</span>
-					);
-				}
-				return <span>{device.amountOfCameras}</span>;
-			})(),
+			value:
+				device.amountOfCameras < 2 ? (
+					<span className={styles.bad}>{device.amountOfCameras}</span>
+				) : (
+					<span>{device.amountOfCameras}</span>
+				),
 			icon: Camera,
 		},
 	];
 
-	return <DeviceCard device={device} infoRows={infoRows} onClose={onClose} />;
+	return (
+		<DeviceCard
+			device={device}
+			infoRows={infoRows}
+			onClose={onClose}
+			open={open}
+		/>
+	);
 }

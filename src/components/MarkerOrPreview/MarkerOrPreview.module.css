@@ -1,4 +1,5 @@
 .markerBox {
+    position: relative;
 	width: 120px;
 	height: 150px;
 	display: inline-flex;
@@ -23,8 +24,6 @@
 }
 .marker img,
 .marker .marker-img {
-	max-width: 70%;
-	max-height: 70%;
 	display: block;
 	margin: auto;
 	object-fit: contain;
@@ -32,8 +31,10 @@
 }
 
 .previewImg {
-	max-height: 100%;
-	max-width: 100%;
 	object-fit: contain;
 	border-radius: 6px;
+	width: auto;
+	height: auto;
+	max-width: 120px;
+	max-height: 150px;
 }

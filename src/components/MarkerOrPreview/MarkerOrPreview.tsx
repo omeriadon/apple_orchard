@@ -9,16 +9,11 @@ type Props = {
 };
 
 export default function MarkerOrPreview({ id, familyID }: Props) {
-	const primary = `/images/iphones/${id}.png`;
-	const lowercase = `/images/iphones/${id.toLowerCase()}.png`;
-	const familyFallback = `/images/iphones/${familyID}/${id}.png`;
+	const url = `/images/iphones/${familyID}/${id}.png`;
 
-	const attempts = [primary, lowercase, familyFallback];
-	const [attemptIndex, setAttemptIndex] = useState(0);
 	const [failed, setFailed] = useState(false);
 
 	useEffect(() => {
-		setAttemptIndex(0);
 		setFailed(false);
 	}, [id, familyID]);
 
@@ -33,16 +28,12 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 	return (
 		<div className={styles.markerBox}>
 			<Image
-				src={attempts[attemptIndex]}
+				src={url}
 				alt={id}
-				width={120}
-				height={150}
+				fill
+				sizes="120x150"
 				className={styles.previewImg}
-				onError={() => {
-					if (attemptIndex < attempts.length - 1)
-						setAttemptIndex((i) => i + 1);
-					else setFailed(true);
-				}}
+				onError={() => setFailed(true)}
 			/>
 		</div>
 	);
