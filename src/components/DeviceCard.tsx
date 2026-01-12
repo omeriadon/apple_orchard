@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./device-card.module.css";
+import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 
 type Props = {

@@ -1,8 +1,5 @@
 .card {
-	background: rgba(255, 255, 255, 0.03);
-	border: 1px solid rgba(255, 255, 255, 0.04);
 	padding: 1rem;
-	border-radius: 8px;
 	max-width: 680px;
 	margin: 0 auto;
 }
@@ -15,8 +12,8 @@
 }
 
 .header h2 {
-	margin: 0;
-	font-size: 1.25rem;
+
+	font-size: 2rem;
 }
 
 .meta {

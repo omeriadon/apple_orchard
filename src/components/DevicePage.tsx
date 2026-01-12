@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./device-page.module.css";
+import styles from "./devicePage.module.css";
 import { ProgressiveBlur } from "@/components/motion-primitives/progressive-blur";
 
 type Props = {

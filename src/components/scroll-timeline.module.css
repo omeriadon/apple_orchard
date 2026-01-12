@@ -4,8 +4,9 @@
 	align-items: flex-start;
 	position: relative;
 	padding-top: 1rem;
-	padding-left: 0;
-	padding-right: 0;
+	padding-left: 200px;
+	padding-right: 200px;
+	box-sizing: border-box;
 	overflow: auto;
 	min-height: 120px;
 	flex: 1 1 auto;
@@ -22,32 +23,59 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 80px; /* align with increased markerBox height (150px) */
+	top: 80px;
 	height: 2px;
 	background: rgba(255, 255, 255, 0.06);
-	z-index: 0;
 }
 
 .item {
 	position: relative;
-	z-index: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-width: 120px;
+	min-width: 160px;
+}
+
+.itemButton {
+	border: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+	color: inherit;
+	text-align: center;
+	transition: all 0.15s ease;
+}
+
+.itemButton:hover {
+	transform: scale(1.1);
+}
+
+.markerBox {
+	width: 120px;
+	height: 150px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5rem;
+	transition: all 0.15s ease;
+}
+
+.markerBox:hover {
+	transform: scale(1.05);
 }
 
 .marker {
-	width: 56px; /* made the fallback circle a bit bigger */
-	height: 56px;
+	width: 40px;
+	height: 40px;
 	border-radius: 999px;
 	background: #fff;
 	border: 2px solid rgba(0, 0, 0, 0.12);
 	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 	cursor: pointer;
-	transition:
-		transform 0.15s ease,
-		box-shadow 0.15s ease;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
 	overflow: hidden;
 	display: inline-flex;
 	align-items: center;
@@ -68,10 +96,9 @@
 	border-radius: 999px;
 }
 
-/* preview image shown when a large image exists; replaces the circle */
 .preview {
+	width: 120px;
 	height: 150px;
-	width: auto;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -82,11 +109,12 @@
 }
 
 .previewImg {
-	height: 150px;
-	width: auto;
+	max-height: 100%;
+	max-width: 100%;
 	object-fit: contain;
 	border-radius: 6px;
 }
+
 .label {
 	margin-top: 0.5rem;
 	color: #eaeaea;
@@ -94,19 +122,22 @@
 	text-align: center;
 }
 
-/* simple popup helpers — pages can override more specific rules */
 .popup {
 	position: absolute;
 	top: 56px;
 	left: 50%;
 	transform: translateX(-50%) scale(0.98);
+	backdrop-filter: blur(12px);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 30px;
 	opacity: 0;
 	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
+	transition: opacity 180ms ease, transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
+	z-index: 990;
+	margin-top: 10rem;
 }
 
 .open {
@@ -117,15 +148,10 @@
 
 .close {
 	position: absolute;
-	right: 8px;
-	top: 8px;
+	right: 15px;
+	top: 15px;
 	background: transparent;
 	border: none;
 	color: rgba(255, 255, 255, 0.8);
 	cursor: pointer;
-	font-size: 0.9rem;
-}
-
-.card-wrapper {
-	padding-top: 0.25rem;
 }
