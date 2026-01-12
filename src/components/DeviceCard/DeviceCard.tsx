@@ -12,7 +12,7 @@ type Props = {
 	infoRows?: DeviceCardRowProps[];
 	onClose?: () => void;
 	open: boolean;
-	onPromote?: () => void; // called once when user starts dragging
+	onPromote?: () => void;
 };
 
 export default function DeviceCard({
@@ -28,7 +28,7 @@ export default function DeviceCard({
 	const dragging = useRef(false);
 	const promoted = useRef(false);
 
-	const PROMOTE_THRESHOLD = 6; // pixels moved before promotion
+	const PROMOTE_THRESHOLD = 6;
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
@@ -44,7 +44,6 @@ export default function DeviceCard({
 		const nextX = e.clientX - offset.current.x;
 		const nextY = e.clientY - offset.current.y;
 
-		// promote when user actually moves the card enough
 		if (!promoted.current) {
 			const dx = Math.abs(nextX - pos.x);
 			const dy = Math.abs(nextY - pos.y);

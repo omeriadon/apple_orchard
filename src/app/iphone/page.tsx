@@ -44,7 +44,6 @@ export default function Page() {
 						<IphoneCard
 							device={device}
 							onClose={() => {
-								// remove pin and clear transient if needed
 								setPinnedIds((prev) => {
 									const next = new Set(prev);
 									next.delete(device.id);
