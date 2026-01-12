@@ -33,7 +33,7 @@ export default function Page() {
 							className={styles.itemButton}
 							onClick={() =>
 								setActiveId((cur) =>
-									cur === device.id ? null : device.id
+									cur === device.id ? null : device.id,
 								)
 							}
 						>
@@ -64,7 +64,7 @@ export default function Page() {
 									return next;
 								});
 								setActiveId((cur) =>
-									cur === device.id ? null : cur
+									cur === device.id ? null : cur,
 								);
 							}}
 						/>
