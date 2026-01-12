@@ -1,15 +1,10 @@
 .iphone-page {
-	/* Removed outer padding so content aligns to edges */
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	flex: 1 1 auto; /* fill available vertical space inside main */
+	flex: 1 1 auto;
 	min-height: 0;
 }
-
-/* Timeline styles are now provided by the shared `ScrollTimeline` component */
-
-/* Keep page-specific overrides here if needed */
 
 .item {
 	position: relative;
@@ -17,24 +12,54 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-width: 120px;
+	min-width: 140px;
+}
+
+.markerBox {
+	width: 120px;
+	height: 150px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.15s ease;
+    margin-bottom: 0.5rem;
+}
+.markerBox:hover {
+	transform: scale(1.1);
 }
 
 .marker {
-	width: 16px;
-	height: 16px;
+	width: 40px;
+	height: 40px;
 	border-radius: 999px;
 	background: #fff;
 	border: 2px solid rgba(0, 0, 0, 0.12);
 	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 	cursor: pointer;
-	transition:
-		transform 0.15s ease,
-		box-shadow 0.15s ease;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
+	overflow: hidden;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.marker:hover {
-	transform: translateY(-2px) scale(1.08);
+.preview {
+	width: 120px;
+	height: 150px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+}
+
+.previewImg {
+	max-height: 100%;
+	max-width: 100%;
+	object-fit: contain;
+	border-radius: 6px;
 }
 
 .marker img {
@@ -44,6 +69,7 @@
 	object-fit: cover;
 	border-radius: 999px;
 }
+
 .label {
 	margin-top: 0.5rem;
 	color: #eaeaea;
@@ -51,7 +77,6 @@
 	text-align: center;
 }
 
-/* popup/card that appears below the marker */
 .popup {
 	position: absolute;
 	top: 56px;
@@ -59,9 +84,7 @@
 	transform: translateX(-50%) scale(0.98);
 	opacity: 0;
 	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
+	transition: opacity 180ms ease, transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 }
@@ -72,7 +95,6 @@
 	pointer-events: auto;
 }
 
-/* small close button */
 .close {
 	position: absolute;
 	right: 8px;
@@ -84,7 +106,6 @@
 	font-size: 0.9rem;
 }
 
-/* make the card inside popup look good by reducing its width */
 .card-wrapper {
 	padding-top: 0.25rem;
 }

@@ -22,7 +22,7 @@
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 64px; /* align with increased marker size (56px) */
+	top: 80px; /* align with increased markerBox height (150px) */
 	height: 2px;
 	background: rgba(255, 255, 255, 0.06);
 	z-index: 0;
@@ -45,9 +45,7 @@
 	border: 2px solid rgba(0, 0, 0, 0.12);
 	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
 	cursor: pointer;
-	transition:
-		transform 0.15s ease,
-		box-shadow 0.15s ease;
+	transition: transform 0.15s ease, box-shadow 0.15s ease;
 	overflow: hidden;
 	display: inline-flex;
 	align-items: center;
@@ -102,9 +100,7 @@
 	transform: translateX(-50%) scale(0.98);
 	opacity: 0;
 	pointer-events: none;
-	transition:
-		opacity 180ms ease,
-		transform 180ms ease;
+	transition: opacity 180ms ease, transform 180ms ease;
 	width: 360px;
 	max-width: calc(100vw - 3rem);
 }

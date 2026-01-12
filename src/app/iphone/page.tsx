@@ -45,7 +45,7 @@ function MarkerOrPreview({
 							setFoundSrc(url);
 							return;
 						}
-					} catch (e) {
+					} catch {
 						/* try next */
 					}
 				}
@@ -59,34 +59,38 @@ function MarkerOrPreview({
 
 	if (foundSrc) {
 		return (
-			<button
-				type="button"
-				className={styles.preview}
-				aria-expanded={ariaExpanded}
-				aria-controls={ariaControls}
-				onClick={onClick}
-				aria-label={ariaLabel}
-			>
-				<Image
-					src={foundSrc}
-					alt=""
-					width={240}
-					height={150}
-					className={styles.previewImg}
-				/>
-			</button>
+			<div className={styles.markerBox}>
+				<button
+					type="button"
+					className={styles.preview}
+					aria-expanded={ariaExpanded}
+					aria-controls={ariaControls}
+					onClick={onClick}
+					aria-label={ariaLabel}
+				>
+					<Image
+						src={foundSrc}
+						alt=""
+						width={120}
+						height={150}
+						className={styles.previewImg}
+					/>
+				</button>
+			</div>
 		);
 	}
 
 	return (
-		<button
-			type="button"
-			className={styles.marker}
-			aria-expanded={ariaExpanded}
-			aria-controls={ariaControls}
-			onClick={onClick}
-			aria-label={ariaLabel}
-		/>
+		<div className={styles.markerBox}>
+			<button
+				type="button"
+				className={styles.marker}
+				aria-expanded={ariaExpanded}
+				aria-controls={ariaControls}
+				onClick={onClick}
+				aria-label={ariaLabel}
+			/>
+		</div>
 	);
 }
 
@@ -108,7 +112,7 @@ export default function Page() {
 							ariaControls={`popup-${device.id}`}
 							onClick={() =>
 								setOpenId(
-									openId === device.id ? null : device.id,
+									openId === device.id ? null : device.id
 								)
 							}
 							ariaLabel={`Toggle ${device.name}`}
