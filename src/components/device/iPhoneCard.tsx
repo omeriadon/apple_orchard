@@ -19,17 +19,15 @@ export default function IphoneCard({
 	device,
 	onClose,
 	open,
+	onPromote,
 }: {
 	device: iPhone;
 	onClose?: () => void;
 	open: boolean;
+	onPromote?: () => void;
 }) {
 	const infoRows: DeviceCardRowProps[] = [
-		{
-			title: "Screen Size",
-			value: `${device.screenSize}"`,
-			icon: Monitor,
-		},
+		{ title: "Screen Size", value: `${device.screenSize}"`, icon: Monitor },
 		{
 			title: "Brightness",
 			value:
@@ -51,11 +49,7 @@ export default function IphoneCard({
 			),
 			icon: RefreshCcw,
 		},
-		{
-			title: "CPU",
-			value: device.processor,
-			icon: Cpu,
-		},
+		{ title: "CPU", value: device.processor, icon: Cpu },
 		{
 			title: "RAM",
 			value:
@@ -119,6 +113,7 @@ export default function IphoneCard({
 			infoRows={infoRows}
 			onClose={onClose}
 			open={open}
+			onPromote={onPromote}
 		/>
 	);
 }

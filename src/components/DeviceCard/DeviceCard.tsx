@@ -12,6 +12,7 @@ type Props = {
 	infoRows?: DeviceCardRowProps[];
 	onClose?: () => void;
 	open: boolean;
+	onPromote?: () => void; // called once when user starts dragging
 };
 
 export default function DeviceCard({
@@ -19,31 +20,45 @@ export default function DeviceCard({
 	infoRows = [],
 	onClose,
 	open,
+	onPromote,
 }: Props) {
 	const ref = useRef<HTMLElement | null>(null);
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	const offset = useRef({ x: 0, y: 0 });
+	const dragging = useRef(false);
+	const promoted = useRef(false);
+
+	const PROMOTE_THRESHOLD = 6; // pixels moved before promotion
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
+
+		dragging.current = true;
 		ref.current?.setPointerCapture(e.pointerId);
-		offset.current = {
-			x: e.clientX - pos.x,
-			y: e.clientY - pos.y,
-		};
+		offset.current = { x: e.clientX - pos.x, y: e.clientY - pos.y };
 	};
 
 	const onPointerMove = (e: React.PointerEvent) => {
-		if (!open) return;
-		if (!ref.current?.hasPointerCapture(e.pointerId)) return;
+		if (!dragging.current) return;
 
-		setPos({
-			x: e.clientX - offset.current.x,
-			y: e.clientY - offset.current.y,
-		});
+		const nextX = e.clientX - offset.current.x;
+		const nextY = e.clientY - offset.current.y;
+
+		// promote when user actually moves the card enough
+		if (!promoted.current) {
+			const dx = Math.abs(nextX - pos.x);
+			const dy = Math.abs(nextY - pos.y);
+			if (dx + dy >= PROMOTE_THRESHOLD) {
+				promoted.current = true;
+				onPromote?.();
+			}
+		}
+
+		setPos({ x: nextX, y: nextY });
 	};
 
 	const onPointerUp = (e: React.PointerEvent) => {
+		dragging.current = false;
 		ref.current?.releasePointerCapture(e.pointerId);
 	};
 
@@ -56,9 +71,9 @@ export default function DeviceCard({
 			onPointerMove={open ? onPointerMove : undefined}
 			onPointerUp={open ? onPointerUp : undefined}
 			style={{
-				transform: `translateX(-50%) scale(${
-					open ? 1 : 0.95
-				}) translate(${pos.x}px, ${pos.y}px)`,
+				transform: `translate(-50%, 0) translate(${pos.x}px, ${
+					pos.y
+				}px) scale(${open ? 1 : 0.95})`,
 				touchAction: "none",
 				cursor: open ? "grab" : "default",
 			}}
@@ -66,7 +81,7 @@ export default function DeviceCard({
 			<header className={styles.header}>
 				<div className={styles.flex}>
 					<h2 id={`device-${device.id}`}>{device.name}</h2>
-					{onClose ? (
+					{onClose && (
 						<button
 							type="button"
 							className={styles.close}
@@ -74,8 +89,9 @@ export default function DeviceCard({
 						>
 							✕
 						</button>
-					) : null}
+					)}
 				</div>
+
 				<div className={styles.meta}>
 					<span className={styles.meta2}>
 						<CalendarPlus size={16} />

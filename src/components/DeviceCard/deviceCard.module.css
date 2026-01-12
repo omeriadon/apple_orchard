@@ -5,7 +5,8 @@
 
 	position: absolute;
 	left: 50%;
-	margin-top: 14rem;
+	top: 0;
+	margin-top: 17rem;
 	width: 360px;
 	z-index: 20;
 
@@ -16,8 +17,8 @@
 
 	opacity: 0;
 	pointer-events: none;
-	transform: translateX(-50%) scale(0.95);
-	transition: all 80ms ease;
+	transform: translate(-50%, 0) scale(0.95);
+	transition: opacity 80ms ease, transform 80ms ease;
 }
 
 .card.open {
@@ -47,6 +48,9 @@
 	translate: 0 -2px;
 	cursor: pointer;
 	transition: transform 0.15s ease;
+	background: none;
+	border: none;
+	color: inherit;
 }
 
 .close:hover {
@@ -70,4 +74,9 @@
 	margin-top: 0.75rem;
 	display: flex;
 	flex-direction: column;
+}
+
+.bodyGrid {
+	display: grid;
+	gap: 0.5rem;
 }

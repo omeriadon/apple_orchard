@@ -7,12 +7,14 @@ import DevicePage from "@/components/DevicePage/DevicePage";
 import styles from "@/components/DevicePage/devicePage.module.css";
 
 export default function Page() {
-	const [openId, setOpenId] = useState<string | null>(null);
+	const [activeId, setActiveId] = useState<string | null>(null);
+	const [pinnedIds, setPinnedIds] = useState<Set<string>>(new Set());
 
 	return (
 		<DevicePage useTimeline>
 			{iPhones.map((device) => {
-				const isOpen = openId === device.id;
+				const isOpen =
+					activeId === device.id || pinnedIds.has(device.id);
 
 				return (
 					<div
@@ -23,9 +25,13 @@ export default function Page() {
 						<button
 							type="button"
 							className={styles.itemButton}
-							aria-expanded={isOpen}
+							aria-expanded={activeId === device.id}
 							aria-controls={`popup-${device.id}`}
-							onClick={() => setOpenId(isOpen ? null : device.id)}
+							onClick={() =>
+								setActiveId((cur) =>
+									cur === device.id ? null : device.id
+								)
+							}
 							aria-label={`Toggle ${device.name}`}
 						>
 							<MarkerOrPreview
@@ -37,8 +43,26 @@ export default function Page() {
 
 						<IphoneCard
 							device={device}
-							onClose={() => setOpenId(null)}
+							onClose={() => {
+								// remove pin and clear transient if needed
+								setPinnedIds((prev) => {
+									const next = new Set(prev);
+									next.delete(device.id);
+									return next;
+								});
+								setActiveId((cur) =>
+									cur === device.id ? null : cur
+								);
+							}}
 							open={isOpen}
+							onPromote={() =>
+								setPinnedIds((prev) => {
+									if (prev.has(device.id)) return prev;
+									const next = new Set(prev);
+									next.add(device.id);
+									return next;
+								})
+							}
 						/>
 					</div>
 				);
