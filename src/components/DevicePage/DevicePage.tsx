@@ -2,14 +2,6 @@ import React from "react";
 import styles from "./devicePage.module.css";
 import { ProgressiveBlur } from "@/components/motion-primitives/progressive-blur";
 
-type ScrollTimelineProps = {
-	children: React.ReactNode;
-};
-
-export function ScrollTimeline({ children }: ScrollTimelineProps) {
-	return <div role="list">{children}</div>;
-}
-
 type Props = {
 	children: React.ReactNode;
 	useTimeline?: boolean;
