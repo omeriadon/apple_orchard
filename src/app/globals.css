@@ -23,7 +23,7 @@ body {
 	color: white;
 	font-family: "SFPro", Helvetica, sans-serif;
 	overscroll-behavior: contain;
-	overflow-x: hidden;
+	overscroll-behavior-y: none;
 }
 
 .gradient-layer {
