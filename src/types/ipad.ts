@@ -3,7 +3,7 @@ import { DeviceSchema } from "./device";
 
 export const iPadSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
-	screenSize: z.number(),
+	screenSizes: z.number().array(),
 	proMotion: z.boolean(),
 
 	topStructure: z.enum(["homeButton", "none"]),
@@ -19,6 +19,8 @@ export const iPadSchema = DeviceSchema.extend({
 	batteryMah: z.number().int(),
 
 	amountOfCameras: z.number().int().min(1).max(3),
+
+	appleIntelligence: z.boolean(),
 });
 
 export type iPad = z.infer<typeof iPadSchema>;

@@ -6,12 +6,17 @@ import styles from "./MarkerOrPreview.module.css";
 type Props = {
 	id: string;
 	familyID: string;
+	size: string;
 };
 
-export default function MarkerOrPreview({ id, familyID }: Props) {
+export default function MarkerOrPreview({
+	id,
+	familyID,
+	size
+}: Props) {
 	const url = useMemo(
 		() => `/images/iphones/${familyID}/${id}.png`,
-		[id, familyID],
+		[id, familyID]
 	);
 	const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
 	const failed = failedUrls.has(url);
@@ -32,7 +37,7 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 					alt={id}
 					fill
 					unoptimized
-					sizes="120px"
+					sizes={size}
 					className={styles.previewImg}
 					onError={() =>
 						setFailedUrls((prev) => {

@@ -106,12 +106,11 @@ export default function IphoneCard({
 		},
 		{
 			title: "Apple Intelligence",
-			value:
-				device.appleIntelligence ? (
-					<div>Yes</div>
-				) : (
-					<span className={styles.old}>No</span>
-				),
+			value: device.appleIntelligence ? (
+				<div>Yes</div>
+			) : (
+				<span className={styles.old}>No</span>
+			),
 			icon: Brain,
 		},
 		{

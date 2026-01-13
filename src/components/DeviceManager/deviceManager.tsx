@@ -7,7 +7,7 @@ import styles from "@/components/DevicePage/devicePage.module.css";
 export type Device = {
 	id: string;
 	name: string;
-	familyID: string;
+    familyID: string;
 };
 
 type DeviceManagerProps<T extends Device> = {
@@ -20,12 +20,14 @@ type DeviceManagerProps<T extends Device> = {
 		onClose?: () => void;
 		onPromote?: () => void;
 		variant?: "pinned";
-	}>;
+    }>;
+    markerSize: number;
 };
 
 export default function DeviceManager<T extends Device>({
 	devices,
-	CardComponent,
+    CardComponent,
+    markerSize,
 }: DeviceManagerProps<T>) {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [pinnedIds, setPinnedIds] = useState<Set<string>>(new Set());
@@ -91,6 +93,7 @@ export default function DeviceManager<T extends Device>({
 							<MarkerOrPreview
 								id={device.id}
 								familyID={device.familyID}
+								size={`${markerSize}px`}
 							/>
 							<span className={styles.label}>{device.name}</span>
 						</button>
@@ -115,7 +118,7 @@ export default function DeviceManager<T extends Device>({
 									return next;
 								});
 								setActiveId((cur) =>
-									cur === device.id ? null : cur,
+									cur === device.id ? null : cur
 								);
 							}}
 						/>

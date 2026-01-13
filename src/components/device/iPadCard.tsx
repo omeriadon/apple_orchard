@@ -35,7 +35,11 @@ export default function IpadCard({
 	onPin,
 }: Props) {
 	const infoRows: DeviceCardRowProps[] = [
-		{ title: "Screen Size", value: `${device.screenSize}"`, icon: Monitor },
+		{
+			title: "Screen Size",
+			value: device.screenSizes.join(", "),
+			icon: Monitor,
+		},
 		{
 			title: "Brightness",
 			value:
