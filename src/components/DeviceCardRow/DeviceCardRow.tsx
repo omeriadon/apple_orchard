@@ -2,7 +2,7 @@ import React from "react";
 import type { LucideIcon } from "lucide-react";
 import styles from "./deviceCardRow.module.css";
 
-export const DEVICE_CARD_ICON_SIZE = 20;
+export const DEVICE_CARD_ICON_SIZE = 15;
 
 export type DeviceCardRowProps = {
 	icon?: LucideIcon;

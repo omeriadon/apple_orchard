@@ -46,7 +46,6 @@
 
 .timeline {
 	display: flex;
-	gap: 2rem;
 	align-items: flex-start;
 	position: relative;
 	padding-top: 1rem;

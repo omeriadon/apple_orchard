@@ -1,8 +1,8 @@
 .infoRow {
-	padding: 0.55rem 0rem;
+	padding: 0.4rem 0rem;
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.5rem;
 }
 
 .infoRow:last-child {
@@ -16,7 +16,7 @@
 }
 
 .infoTitle {
-	font-size: 0.65rem;
+	font-size: 0.6rem;
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	opacity: 0.6;
@@ -24,7 +24,7 @@
 }
 
 .infoValue {
-	font-size: 0.95rem;
+	font-size: 0.8rem;
 	font-weight: 600;
 	line-height: 1.2;
 	text-align: right;
