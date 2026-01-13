@@ -8,7 +8,8 @@ export default function iPhonePage() {
 		<DeviceManager
 			devices={iPhones}
 			CardComponent={IphoneCard}
-			markerSize={120}
+			width={306}
+			height={380}
 			deviceType="iphones"
 		/>
 	);
