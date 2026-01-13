@@ -28,18 +28,19 @@
 
 .linksTitle {
 	text-align: center;
-	font-size: 1.7rem;
 	font-family: "SFMono", monospace;
 	margin-bottom: 1.5rem;
 }
 
 .link {
 	transition: all 0.3s ease;
+	font-size: 1.7rem;
 	padding: 1rem;
 	width: 200px;
 	margin: 0 auto;
 	cursor: pointer;
 	border-radius: 20px;
+	text-decoration: underline;
 }
 
 .link:hover {
