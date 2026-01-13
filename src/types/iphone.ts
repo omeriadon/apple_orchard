@@ -20,6 +20,8 @@ export const iPhoneSchema = DeviceSchema.extend({
 	batteryMah: z.number().int(),
 
 	amountOfCameras: z.number().int().min(1).max(3),
+
+	appleIntelligence: z.boolean(),
 });
 
 export type iPhone = z.infer<typeof iPhoneSchema>;

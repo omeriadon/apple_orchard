@@ -11,6 +11,7 @@ import {
 	RefreshCcw,
 	MemoryStick,
 	HardDrive,
+	Brain,
 } from "lucide-react";
 import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
 import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
@@ -102,6 +103,16 @@ export default function IphoneCard({
 					<div>Face ID</div>
 				),
 			icon: ScanFace,
+		},
+		{
+			title: "Apple Intelligence",
+			value:
+				device.appleIntelligence ? (
+					<div>Yes</div>
+				) : (
+					<span className={styles.old}>No</span>
+				),
+			icon: Brain,
 		},
 		{
 			title: "Cameras",

@@ -20,6 +20,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 3,
 		batteryMah: 5088,
+		appleIntelligence: true,
 	},
 	{
 		id: "17Pro",
@@ -39,6 +40,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 3,
 		batteryMah: 4252,
+		appleIntelligence: true,
 	},
 	{
 		id: "17Air",
@@ -58,6 +60,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 1,
 		batteryMah: 3149,
+		appleIntelligence: true,
 	},
 	{
 		id: "17",
@@ -77,6 +80,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 2,
 		batteryMah: 3692,
+		appleIntelligence: true,
 	},
 
 	//MARK: - 16
@@ -98,6 +102,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 3,
 		batteryMah: 4685,
+		appleIntelligence: true,
 	},
 	{
 		id: "16Pro",
@@ -117,6 +122,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 3,
 		batteryMah: 3582,
+		appleIntelligence: true,
 	},
 	{
 		id: "16Plus",
@@ -136,6 +142,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 2,
 		batteryMah: 4674,
+		appleIntelligence: true,
 	},
 	{
 		id: "16",
@@ -155,6 +162,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 2,
 		batteryMah: 3561,
+		appleIntelligence: true,
 	},
 	{
 		id: "16e",
@@ -174,6 +182,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		amountOfCameras: 1,
 		batteryMah: 3961,
+		appleIntelligence: true,
 	},
 
 	//MARK: - 15
@@ -195,6 +204,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 4422,
 		amountOfCameras: 3,
+		appleIntelligence: true,
 	},
 	{
 		id: "15Pro",
@@ -214,6 +224,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 3274,
 		amountOfCameras: 3,
+		appleIntelligence: true,
 	},
 	{
 		id: "15Plus",
@@ -233,6 +244,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 4383,
 		amountOfCameras: 2,
+		appleIntelligence: false,
 	},
 	{
 		id: "15",
@@ -252,6 +264,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 3349,
 		amountOfCameras: 2,
+		appleIntelligence: false,
 	},
 
 	//MARK: - 14
@@ -273,6 +286,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 4323,
 		amountOfCameras: 3,
+		appleIntelligence: false,
 	},
 	{
 		id: "14Pro",
@@ -292,6 +306,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 3200,
 		amountOfCameras: 3,
+		appleIntelligence: false,
 	},
 	{
 		id: "14Plus",
@@ -311,6 +326,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 4325,
 		amountOfCameras: 2,
+		appleIntelligence: false,
 	},
 	{
 		id: "14",
@@ -330,6 +346,7 @@ const _iPhones: iPhone[] = [
 		authentication: "faceID",
 		batteryMah: 3279,
 		amountOfCameras: 2,
+		appleIntelligence: false,
 	},
 ];
 
