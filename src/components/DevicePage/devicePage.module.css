@@ -67,9 +67,11 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin-top: -20rem;
+	margin-top: -100rem;
 	gap: 1rem;
 	padding-bottom: 1rem;
+	flex-wrap: nowrap;
+	overflow-x: auto;
 }
 
 .item {
