@@ -27,17 +27,17 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 
 	return (
 		<div className={styles.markerBox}>
-			<Image
-				src={url}
-				alt={id}
-				width={120}
-				height={150}
-				sizes="120px"
-				className={styles.previewImg}
-				style={{ width: "auto", height: "auto" }}
-				onError={() => setFailed(true)}
-			/>
+			<div className={styles.previewWrapper}>
+				<Image
+					src={url}
+					alt={id}
+					fill
+					unoptimized
+					sizes="120px"
+					className={styles.previewImg}
+					onError={() => setFailed(true)}
+				/>
+			</div>
 		</div>
 	);
 }
-
