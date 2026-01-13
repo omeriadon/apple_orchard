@@ -10,7 +10,7 @@ export default function Page() {
 	const [openId, setOpenId] = useState<string | null>(null);
 
 	return (
-		<DevicePage useTimeline>
+		<DevicePage>
 			{iPhones.map((device) => {
 				const isOpen = openId === device.id;
 
