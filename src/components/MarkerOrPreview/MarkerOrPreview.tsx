@@ -30,11 +30,14 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 			<Image
 				src={url}
 				alt={id}
-				fill
-				sizes="120x150"
+				width={120}
+				height={150}
+				sizes="120px"
 				className={styles.previewImg}
+				style={{ width: "auto", height: "auto" }}
 				onError={() => setFailed(true)}
 			/>
 		</div>
 	);
 }
+
