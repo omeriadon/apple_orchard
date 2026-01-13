@@ -1,14 +1,15 @@
 import React, { useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
-import { Device } from "@/types/device";
+import { iPhone } from "@/types/iphone";
 import { CalendarPlus, CalendarMinus, Pin } from "lucide-react";
+import RegionalPrice from "@/components/Price/RegionalPrice";
 import {
 	DeviceCardRow,
 	type DeviceCardRowProps,
 } from "../DeviceCardRow/DeviceCardRow";
 
 type Props = {
-	device: Device;
+	device: iPhone;
 	infoRows?: DeviceCardRowProps[];
 	onClose?: () => void;
 	open: boolean;
@@ -86,11 +87,9 @@ export default function DeviceCard({
 			aria-labelledby={`device-${device.id}`}
 			{...pointerHandlers}
 			style={{
-				transform: `${
-					isFloating
-						? `translate(-50%, 0) translate(${pos.x}px, ${pos.y}px)`
-						: `translate(${pos.x}px, ${pos.y}px)`
-				} scale(${open ? 1 : 0.95})`,
+				transform: isFloating
+					? `translate(-50%, 0) translate(${pos.x}px, ${pos.y}px)`
+					: `translate(${pos.x}px, ${pos.y}px)`,
 				touchAction: enableDrag ? "none" : "auto",
 				cursor: enableDrag ? "grab" : "default",
 				zIndex: variant === "pinned" ? (zIndex ?? 20) : (zIndex ?? 20),
@@ -135,6 +134,10 @@ export default function DeviceCard({
 						<CalendarMinus size={16} />
 						{device.supportedUntil}
 					</span>
+					<RegionalPrice
+						pricing={device.pricing}
+						storage={device.baseStorage}
+					/>
 				</div>
 			</header>
 

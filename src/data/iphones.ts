@@ -28,6 +28,17 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "18 MP Center Stage",
 		opticalZoomOptions: [0.5, 1, 2, 4, 8],
 		cameraResolutions: [48, 48, 48],
+		pricing: {
+			base: {
+				new: 3299,
+				refurbished: 2599,
+				storage: { 256: 3299, 512: 3599, 1024: 3999 },
+				baseCurrency: "AUD",
+			},
+			regions: {
+				AU: { multiplier: 1, currency: "AUD" },
+			},
+		},
 	},
 	{
 		id: "17Pro",
@@ -54,6 +65,17 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "18 MP Center Stage",
 		opticalZoomOptions: [0.5, 1, 2, 4, 8],
 		cameraResolutions: [48, 48, 48],
+		pricing: {
+			base: {
+				new: 2999,
+				refurbished: 2399,
+				storage: { 256: 2999, 512: 3299, 1024: 3699 },
+				baseCurrency: "AUD",
+			},
+			regions: {
+				AU: { multiplier: 1, currency: "AUD" },
+			},
+		},
 	},
 	{
 		id: "17Air",
@@ -80,6 +102,15 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "18 MP Center Stage",
 		opticalZoomOptions: [1, 2],
 		cameraResolutions: [48],
+		pricing: {
+			base: {
+				new: 1999,
+				refurbished: 1499,
+				storage: { 256: 1999, 512: 2299 },
+				baseCurrency: "AUD",
+			},
+			regions: { AU: { multiplier: 1, currency: "AUD" } },
+		},
 	},
 	{
 		id: "17",

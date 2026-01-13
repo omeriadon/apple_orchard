@@ -21,7 +21,7 @@ export default function Home() {
 					device, such as base storage or refresh rate.
 				</p>
 			</div>
-			<div className={styles.linksTitle}>Let's go:</div>
+			<div className={styles.linksTitle}>Let&apos;s go:</div>
 			<div className={styles.links}>
 				{navItems.map((page, index) => (
 					<Link

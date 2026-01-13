@@ -1,6 +1,25 @@
 import { z } from "zod";
 import { DeviceSchema } from "./device";
 
+export const PriceBaseSchema = z.object({
+	new: z.number().int().min(0),
+	refurbished: z.number().int().min(0).optional(),
+	storage: z.record(z.number().int(), z.number().int()).optional(),
+	baseCurrency: z.string().optional().default("AUD"),
+});
+
+export const RegionMultiplierSchema = z.object({
+	multiplier: z.number().positive(),
+	currency: z.string().optional(),
+});
+
+export const PricingSchema = z.object({
+	base: PriceBaseSchema,
+	regions: z.record(z.string(), RegionMultiplierSchema).optional(),
+});
+
+export type Pricing = z.infer<typeof PricingSchema>;
+
 export const iPhoneSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
 	screenSize: z.number(),
@@ -27,6 +46,8 @@ export const iPhoneSchema = DeviceSchema.extend({
 	cameraResolutions: z.number().int().array(),
 
 	appleIntelligence: z.boolean(),
+
+	pricing: PricingSchema.optional(),
 });
 
 export type iPhone = z.infer<typeof iPhoneSchema>;

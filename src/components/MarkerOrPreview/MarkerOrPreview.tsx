@@ -1,5 +1,6 @@
 "use client";
-import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import styles from "./MarkerOrPreview.module.css";
 
 type Props = {
@@ -9,14 +10,11 @@ type Props = {
 
 export default function MarkerOrPreview({ id, familyID }: Props) {
 	const url = `/images/iphones/${familyID}/${id}.png`;
+	const renderKey = `${familyID}-${id}`;
+	const [failedKey, setFailedKey] = useState<string | null>(null);
+	const hasFailed = failedKey === renderKey;
 
-	const [failed, setFailed] = useState(false);
-
-	useEffect(() => {
-		setFailed(false);
-	}, [id, familyID]);
-
-	if (failed) {
+	if (hasFailed) {
 		return (
 			<div className={styles.markerBox}>
 				<div className={styles.marker} />
@@ -26,13 +24,17 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 
 	return (
 		<div className={styles.markerBox}>
-			<img
+			<Image
+				key={renderKey}
 				src={url}
 				alt={id}
 				className={styles.previewImg}
-				onError={() => setFailed(true)}
+				onError={() => setFailedKey(renderKey)}
 				decoding="async"
 				loading="lazy"
+				width={120}
+				height={150}
+				sizes="120px"
 			/>
 		</div>
 	);

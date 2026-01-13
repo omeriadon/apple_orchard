@@ -30,6 +30,7 @@
 	flex: 0 0 auto;
 	display: flex;
 	align-items: center;
+	gap: 2rem;
 }
 
 .navbar-links {
@@ -46,6 +47,16 @@
 }
 
 .link:hover {
+	transform: scale(1.1);
+}
+
+.settingsToggle {
+	color: white;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.settingsToggle:hover {
 	transform: scale(1.1);
 }
 

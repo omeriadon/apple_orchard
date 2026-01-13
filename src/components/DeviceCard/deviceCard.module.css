@@ -68,6 +68,12 @@
 	align-items: center;
 }
 
+.price {
+	font-weight: 700;
+	color: white;
+	opacity: 1;
+}
+
 .body {
 	margin-top: 0.75rem;
 }

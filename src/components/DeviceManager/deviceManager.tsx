@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, ReactNode } from "react";
+import { useRef, useState } from "react";
 import MarkerOrPreview from "@/components/MarkerOrPreview/MarkerOrPreview";
 import DevicePage from "@/components/DevicePage/DevicePage";
 import styles from "@/components/DevicePage/devicePage.module.css";
