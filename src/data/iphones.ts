@@ -294,7 +294,7 @@ const _iPhones: iPhone[] = [
 		amountOfCameras: 3,
 	},
 	{
-		id: "14plus",
+		id: "14Plus",
 		familyID: "14",
 		name: "iPhone 14 Plus",
 		introduced: 2022,
