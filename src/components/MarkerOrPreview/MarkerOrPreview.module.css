@@ -1,11 +1,12 @@
 .markerBox {
+	position: relative;
+	width: 120px;
+	height: 150px;
 	display: inline-flex;
-	align-items: baseline; /* aligns images by their baseline */
+	align-items: center;
 	justify-content: center;
 	margin-bottom: 0.5rem;
-	user-select: none;
-	-webkit-user-drag: none;
-	pointer-events: none;
+	transition: all 0.15s ease;
 }
 
 .marker {
@@ -30,14 +31,10 @@
 }
 
 .previewImg {
-	width: 300px;
-	height: 330px;
-	background-repeat: no-repeat;
-	background-size: 300px 330px;
-	background-position: center;
-	display: inline-block;
-}
-
-.previewWrapper {
-	display: inline-flex;
+	object-fit: contain;
+	border-radius: 6px;
+	width: auto;
+	height: auto;
+	max-width: 120px;
+	max-height: 150px;
 }

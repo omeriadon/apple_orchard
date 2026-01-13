@@ -21,17 +21,11 @@ type DeviceManagerProps<T extends Device> = {
 		onPromote?: () => void;
 		variant?: "pinned";
 	}>;
-	width: number;
-	height: number;
-	deviceType: string;
 };
 
 export default function DeviceManager<T extends Device>({
 	devices,
 	CardComponent,
-	width,
-	height,
-	deviceType,
 }: DeviceManagerProps<T>) {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [pinnedIds, setPinnedIds] = useState<Set<string>>(new Set());
@@ -97,9 +91,6 @@ export default function DeviceManager<T extends Device>({
 							<MarkerOrPreview
 								id={device.id}
 								familyID={device.familyID}
-								width={width}
-								height={height}
-								deviceType={deviceType}
 							/>
 							<span className={styles.label}>{device.name}</span>
 						</button>

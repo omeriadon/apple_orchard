@@ -1,29 +1,21 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "./MarkerOrPreview.module.css";
 
 type Props = {
 	id: string;
 	familyID: string;
-	deviceType: string;
-	width: number;
-	height: number;
 };
 
-export default function MarkerOrPreview({
-	id,
-	familyID,
-	deviceType,
-	width,
-	height,
-}: Props) {
-	const url = useMemo(
-		() => `/images/${deviceType}/${familyID}/${id}.png`,
-		[id, familyID, deviceType],
-	);
-	const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
-	const failed = failedUrls.has(url);
+export default function MarkerOrPreview({ id, familyID }: Props) {
+	const url = `/images/iphones/${familyID}/${id}.png`;
+
+	const [failed, setFailed] = useState(false);
+
+	useEffect(() => {
+		setFailed(false);
+	}, [id, familyID]);
 
 	if (failed) {
 		return (
@@ -35,16 +27,15 @@ export default function MarkerOrPreview({
 
 	return (
 		<div className={styles.markerBox}>
-			<div
+			<Image
+				src={url}
+				alt={id}
+				width={120}
+				height={150}
+				sizes="120px"
 				className={styles.previewImg}
-				style={{
-					backgroundImage: `url(${url})`,
-					backgroundSize: "300px 330px",
-					width: "300px",
-					height: "330px",
-					backgroundRepeat: "no-repeat",
-					display: "inline-block",
-				}}
+				style={{ width: "auto", height: "auto" }}
+				onError={() => setFailed(true)}
 			/>
 		</div>
 	);
