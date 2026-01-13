@@ -64,6 +64,14 @@
 	display: none;
 }
 
+.pinnedShelf {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-top: -20rem;
+}
+
+
 .item {
 	position: relative;
 	display: flex;

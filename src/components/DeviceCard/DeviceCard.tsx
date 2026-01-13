@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 import { CalendarPlus, CalendarMinus } from "lucide-react";
@@ -14,6 +14,7 @@ type Props = {
 	open: boolean;
 	onPromote?: () => void;
 	zIndex?: number;
+	variant?: "floating" | "pinned";
 };
 
 export default function DeviceCard({
@@ -23,12 +24,13 @@ export default function DeviceCard({
 	open,
 	onPromote,
 	zIndex,
+	variant = "floating",
 }: Props) {
 	const ref = useRef<HTMLElement | null>(null);
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	const offset = useRef({ x: 0, y: 0 });
 	const dragging = useRef(false);
-	const hasPromoted = useRef(false);
+	const isFloating = variant !== "pinned";
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
@@ -58,30 +60,28 @@ export default function DeviceCard({
 		ref.current?.releasePointerCapture(e.pointerId);
 	};
 
-	useEffect(() => {
-		if (!open) {
-			hasPromoted.current = false;
-			return;
-		}
-
-		if (!hasPromoted.current) {
-			onPromote?.();
-			hasPromoted.current = true;
-		}
-	}, [open, onPromote]);
+	const className = [
+		styles.card,
+		isFloating ? styles.floating : styles.pinned,
+		open ? styles.open : "",
+	]
+		.filter(Boolean)
+		.join(" ");
 
 	return (
 		<article
 			ref={ref}
-			className={`${styles.card} ${open ? styles.open : ""}`}
+			className={className}
 			aria-labelledby={`device-${device.id}`}
 			onPointerDown={open ? onPointerDown : undefined}
 			onPointerMove={open ? onPointerMove : undefined}
 			onPointerUp={open ? onPointerUp : undefined}
 			style={{
-				transform: `translate(-50%, 0) translate(${pos.x}px, ${
-					pos.y
-				}px) scale(${open ? 1 : 0.95})`,
+				transform: `${
+					isFloating
+						? `translate(-50%, 0) translate(${pos.x}px, ${pos.y}px)`
+						: `translate(${pos.x}px, ${pos.y}px)`
+				} scale(${open ? 1 : 0.95})`,
 				touchAction: "none",
 				cursor: open ? "grab" : "default",
 				zIndex: zIndex ?? 20,

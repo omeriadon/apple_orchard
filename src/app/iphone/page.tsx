@@ -20,22 +20,55 @@ export default function Page() {
 		}));
 	};
 
+	const pinnedDevices = iPhones.filter((device) => pinnedIds.has(device.id));
+
 	return (
-		<DevicePage useTimeline>
+		<DevicePage
+			useTimeline
+			footer={
+				pinnedDevices.length > 0 ? (
+					<div className={styles.pinnedShelf}>
+						{pinnedDevices.map((device) => (
+							<IphoneCard
+								key={`pinned-${device.id}`}
+								device={device}
+								open
+								onClose={() => {
+									setPinnedIds((prev) => {
+										const next = new Set(prev);
+										next.delete(device.id);
+										return next;
+									});
+									setActiveId((cur) =>
+										cur === device.id ? null : cur,
+									);
+								}}
+								onPromote={() => bringToFront(device.id)}
+								zIndex={zMap[device.id]}
+								variant="pinned"
+							/>
+						))}
+					</div>
+				) : null
+			}
+		>
 			{iPhones.map((device) => {
 				const isPinned = pinnedIds.has(device.id);
 				const isOpen = activeId === device.id || isPinned;
+				const floatingOpen = isOpen && !isPinned;
 
 				return (
 					<div className={styles.item} key={device.id}>
 						<button
 							type="button"
 							className={styles.itemButton}
-							onClick={() =>
-								setActiveId((cur) =>
-									cur === device.id ? null : device.id,
-								)
-							}
+							onClick={() => {
+								setActiveId((cur) => {
+									const next = cur === device.id ? null : device.id;
+									if (next === device.id) bringToFront(device.id);
+									return next;
+								});
+							}}
 						>
 							<MarkerOrPreview
 								id={device.id}
@@ -46,7 +79,7 @@ export default function Page() {
 
 						<IphoneCard
 							device={device}
-							open={isOpen}
+							open={floatingOpen}
 							zIndex={zMap[device.id]}
 							onPromote={() => {
 								setPinnedIds((prev) => {

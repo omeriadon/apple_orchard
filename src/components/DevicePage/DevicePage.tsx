@@ -6,12 +6,14 @@ type Props = {
 	children: React.ReactNode;
 	useTimeline?: boolean;
 	timelineClassName?: string;
+	footer?: React.ReactNode;
 };
 
 export default function DevicePage({
 	children,
 	useTimeline = false,
 	timelineClassName = "",
+ 	footer,
 }: Props) {
 	return (
 		<section className={styles.container}>
@@ -26,6 +28,7 @@ export default function DevicePage({
 				) : (
 					children
 				)}
+				{footer}
 			</div>
 			<ProgressiveBlur
 				className={`${styles.blurEdge} ${styles.blurLeft}`}

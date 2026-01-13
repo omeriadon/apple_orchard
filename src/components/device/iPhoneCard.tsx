@@ -21,6 +21,7 @@ type Props = {
 	onClose?: () => void;
 	onPromote?: () => void;
 	zIndex?: number;
+	variant?: "floating" | "pinned";
 };
 
 export default function IphoneCard({
@@ -29,6 +30,7 @@ export default function IphoneCard({
 	onClose,
 	onPromote,
 	zIndex,
+	variant = "floating",
 }: Props) {
 	const infoRows: DeviceCardRowProps[] = [
 		{ title: "Screen Size", value: `${device.screenSize}"`, icon: Monitor },
@@ -119,6 +121,7 @@ export default function IphoneCard({
 			onClose={onClose}
 			onPromote={onPromote}
 			zIndex={zIndex}
+			variant={variant}
 		/>
 	);
 }
