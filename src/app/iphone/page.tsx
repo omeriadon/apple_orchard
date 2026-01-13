@@ -64,8 +64,10 @@ export default function Page() {
 							className={styles.itemButton}
 							onClick={() => {
 								setActiveId((cur) => {
-									const next = cur === device.id ? null : device.id;
-									if (next === device.id) bringToFront(device.id);
+									const next =
+										cur === device.id ? null : device.id;
+									if (next === device.id)
+										bringToFront(device.id);
 									return next;
 								});
 							}}
@@ -81,7 +83,7 @@ export default function Page() {
 							device={device}
 							open={floatingOpen}
 							zIndex={zMap[device.id]}
-							onPromote={() => {
+							onPin={() => {
 								setPinnedIds((prev) => {
 									if (prev.has(device.id)) return prev;
 									const next = new Set(prev);

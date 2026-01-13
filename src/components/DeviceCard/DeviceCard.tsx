@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
-import { CalendarPlus, CalendarMinus } from "lucide-react";
+import { CalendarPlus, CalendarMinus, Pin } from "lucide-react";
 import {
 	DeviceCardRow,
 	type DeviceCardRowProps,
@@ -15,6 +15,7 @@ type Props = {
 	onPromote?: () => void;
 	zIndex?: number;
 	variant?: "floating" | "pinned";
+	onPin?: () => void;
 };
 
 export default function DeviceCard({
@@ -25,12 +26,14 @@ export default function DeviceCard({
 	onPromote,
 	zIndex,
 	variant = "floating",
+	onPin,
 }: Props) {
 	const ref = useRef<HTMLElement | null>(null);
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	const offset = useRef({ x: 0, y: 0 });
 	const dragging = useRef(false);
 	const isFloating = variant !== "pinned";
+	const enableDrag = open && !isFloating;
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
@@ -68,39 +71,59 @@ export default function DeviceCard({
 		.filter(Boolean)
 		.join(" ");
 
+	const pointerHandlers = enableDrag
+		? {
+			onPointerDown,
+			onPointerMove,
+			onPointerUp,
+		}
+		: {};
+
 	return (
 		<article
 			ref={ref}
 			className={className}
 			aria-labelledby={`device-${device.id}`}
-			onPointerDown={open ? onPointerDown : undefined}
-			onPointerMove={open ? onPointerMove : undefined}
-			onPointerUp={open ? onPointerUp : undefined}
+			{...pointerHandlers}
 			style={{
 				transform: `${
 					isFloating
 						? `translate(-50%, 0) translate(${pos.x}px, ${pos.y}px)`
 						: `translate(${pos.x}px, ${pos.y}px)`
 				} scale(${open ? 1 : 0.95})`,
-				touchAction: "none",
-				cursor: open ? "grab" : "default",
-				zIndex: zIndex ?? 20,
+				touchAction: enableDrag ? "none" : "auto",
+				cursor: enableDrag ? "grab" : "default",
+				zIndex: variant === "pinned" ? 801 : zIndex ?? 20,
 			}}
 		>
 			<header className={styles.header}>
 				<div className={styles.flex}>
 					<h2 id={`device-${device.id}`}>{device.name}</h2>
 
-					{onClose && (
-						<button
-							type="button"
-							className={styles.close}
-							onPointerDown={(e) => e.stopPropagation()}
-							onClick={onClose}
-						>
-							✕
-						</button>
-					)}
+					<div className={styles.controls}>
+						{isFloating && onPin && (
+							<button
+								type="button"
+								className={styles.close}
+								onPointerDown={(e) => e.stopPropagation()}
+								onClick={() => onPin?.()}
+								aria-label={`Pin ${device.name}`}
+							>
+								<Pin size={16} />
+							</button>
+						)}
+
+						{onClose && (
+							<button
+								type="button"
+								className={styles.close}
+								onPointerDown={(e) => e.stopPropagation()}
+								onClick={onClose}
+							>
+								✕
+							</button>
+						)}
+					</div>
 				</div>
 
 				<div className={styles.meta}>

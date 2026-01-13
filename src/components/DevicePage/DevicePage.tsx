@@ -13,7 +13,7 @@ export default function DevicePage({
 	children,
 	useTimeline = false,
 	timelineClassName = "",
- 	footer,
+	footer,
 }: Props) {
 	return (
 		<section className={styles.container}>
