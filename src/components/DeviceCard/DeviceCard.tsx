@@ -73,10 +73,10 @@ export default function DeviceCard({
 
 	const pointerHandlers = enableDrag
 		? {
-			onPointerDown,
-			onPointerMove,
-			onPointerUp,
-		}
+				onPointerDown,
+				onPointerMove,
+				onPointerUp,
+			}
 		: {};
 
 	return (
@@ -93,7 +93,7 @@ export default function DeviceCard({
 				} scale(${open ? 1 : 0.95})`,
 				touchAction: enableDrag ? "none" : "auto",
 				cursor: enableDrag ? "grab" : "default",
-				zIndex: variant === "pinned" ? 801 : zIndex ?? 20,
+				zIndex: variant === "pinned" ? 801 : (zIndex ?? 20),
 			}}
 		>
 			<header className={styles.header}>
