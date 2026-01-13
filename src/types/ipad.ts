@@ -3,7 +3,7 @@ import { DeviceSchema } from "./device";
 
 export const iPadSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
-	screenSizes: z.number().array(),
+	screenSize: z.number(),
 	proMotion: z.boolean(),
 
 	topStructure: z.enum(["homeButton", "none"]),

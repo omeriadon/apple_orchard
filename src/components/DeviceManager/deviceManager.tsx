@@ -22,12 +22,14 @@ type DeviceManagerProps<T extends Device> = {
 		variant?: "pinned";
 	}>;
 	markerSize: number;
+	deviceType: string;
 };
 
 export default function DeviceManager<T extends Device>({
 	devices,
 	CardComponent,
 	markerSize,
+	deviceType,
 }: DeviceManagerProps<T>) {
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [pinnedIds, setPinnedIds] = useState<Set<string>>(new Set());
@@ -94,6 +96,7 @@ export default function DeviceManager<T extends Device>({
 								id={device.id}
 								familyID={device.familyID}
 								size={`${markerSize}px`}
+								deviceType={deviceType}
 							/>
 							<span className={styles.label}>{device.name}</span>
 						</button>

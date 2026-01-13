@@ -9,6 +9,7 @@ export default function iPhonePage() {
 			devices={iPhones}
 			CardComponent={IphoneCard}
 			markerSize={120}
+			deviceType="macs"
 		/>
 	);
 }

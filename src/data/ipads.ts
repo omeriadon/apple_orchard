@@ -3,13 +3,13 @@ import { iPad } from "@/types/ipad";
 const _iPads: iPad[] = [
 	//MARK: - 17
 	{
-		id: "17ProMax",
-		familyID: "17",
-		name: "iPhone 17 Pro Max",
+		id: "air13M3",
+		familyID: "2025",
+		name: 'iPad Air 13" (M3)',
 		introduced: 2025,
-		supportedUntil: 2033,
+		supportedUntil: 2031,
 		maxBrightness: 3000,
-		screenSizes: [6.9, 7, 8],
+		screenSize: 6.9,
 		proMotion: true,
 		topStructure: "homeButton",
 		processor: "A19 Pro",

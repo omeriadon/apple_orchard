@@ -9,6 +9,7 @@ export default function iPadPage() {
 			devices={iPads}
 			CardComponent={IpadCard}
 			markerSize={301}
+			deviceType="ipads"
 		/>
 	);
 }

@@ -6,13 +6,19 @@ import styles from "./MarkerOrPreview.module.css";
 type Props = {
 	id: string;
 	familyID: string;
+	deviceType: string;
 	size: string;
 };
 
-export default function MarkerOrPreview({ id, familyID, size }: Props) {
+export default function MarkerOrPreview({
+	id,
+	familyID,
+	deviceType,
+	size,
+}: Props) {
 	const url = useMemo(
-		() => `/images/iphones/${familyID}/${id}.png`,
-		[id, familyID],
+		() => `/images/${deviceType}/${familyID}/${id}.png`,
+		[id, familyID, deviceType],
 	);
 	const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
 	const failed = failedUrls.has(url);
