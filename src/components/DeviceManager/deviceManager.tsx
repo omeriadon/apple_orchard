@@ -59,7 +59,7 @@ export default function DeviceManager<T extends Device>({
 										return next;
 									});
 									setActiveId((cur) =>
-										cur === device.id ? null : cur
+										cur === device.id ? null : cur,
 									);
 								}}
 							/>
@@ -115,7 +115,7 @@ export default function DeviceManager<T extends Device>({
 									return next;
 								});
 								setActiveId((cur) =>
-									cur === device.id ? null : cur
+									cur === device.id ? null : cur,
 								);
 							}}
 						/>

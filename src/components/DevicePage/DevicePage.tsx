@@ -16,14 +16,13 @@ export default function DevicePage({
 	return (
 		<section className={styles.container}>
 			<div className={styles.content}>
+				<div
+					className={`${styles.timeline} ${timelineClassName}`.trim()}
+					role="list"
+				>
+					{children}
+				</div>
 
-					<div
-						className={`${styles.timeline} ${timelineClassName}`.trim()}
-						role="list"
-					>
-						{children}
-					</div>
-				
 				{footer}
 			</div>
 			<ProgressiveBlur

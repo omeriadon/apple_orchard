@@ -4,10 +4,5 @@ import IphoneCard from "@/components/device/iPhoneCard";
 import DeviceManager from "@/components/DeviceManager/deviceManager";
 
 export default function iPhonePage() {
-	return (
-		<DeviceManager
-			devices={iPhones}
-			CardComponent={IphoneCard}
-		/>
-	);
+	return <DeviceManager devices={iPhones} CardComponent={IphoneCard} />;
 }
