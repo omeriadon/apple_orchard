@@ -81,7 +81,7 @@ export default function IphoneCard({
 		},
 		{
 			title: "Battery",
-			value: `${device.batteryMah} mAh`,
+			value: `${device.videoPlaybackHours} hr`,
 			icon: BatteryCharging,
 		},
 		{

@@ -5,8 +5,9 @@ export const iPhoneSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
 	screenSize: z.number(),
 	proMotion: z.boolean(),
+	displayShield: z.enum(["ceramicShield", "ceramicShield2"]),
 
-	topStructure: z.enum(["none", "notch", "dynamicIsland"]),
+	topStructure: z.enum(["notch", "dynamicIsland"]),
 
 	processor: z.string(),
 	ram: z.number().int(),
@@ -14,12 +15,18 @@ export const iPhoneSchema = DeviceSchema.extend({
 
 	portType: z.enum(["lightning", "usbC"]),
 	magsafe: z.boolean(),
+	actionButton: z.boolean(),
 
 	authentication: z.enum(["faceID", "touchID"]),
 
-	batteryMah: z.number().int(),
+	videoPlaybackHours: z.number().int(),
 
 	amountOfCameras: z.number().int().min(1).max(3),
+	cameraControl: z.boolean(),
+	macroPhotos: z.boolean(),
+	frontCameraType: z.enum(["12 MP", "18 MP Center Stage"]),
+	opticalZoomOptions: z.number().int().array(),
+	cameraResolutions: z.number().int().array(),
 
 	appleIntelligence: z.boolean(),
 });

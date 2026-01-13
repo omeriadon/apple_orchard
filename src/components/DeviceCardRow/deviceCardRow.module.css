@@ -34,7 +34,6 @@
 .old::after {
 	content: " Old";
 	font-size: 0.8rem;
-	opacity: 0.8;
 	text-transform: uppercase;
 	margin-left: 0.2rem;
 	color: rgb(255, 77, 0);
