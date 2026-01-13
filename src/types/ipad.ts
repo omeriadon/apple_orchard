@@ -14,9 +14,11 @@ export const iPadSchema = DeviceSchema.extend({
 
 	portType: z.enum(["lightning", "usbC"]),
 
-	authentication: z.enum(["faceID", "touchID", "passcode"]),
+	authentication: z.enum(["faceID", "touchID"]),
 
-	batteryMah: z.number().int().optional(),
+	batteryMah: z.number().int(),
+
+	amountOfCameras: z.number().int().min(1).max(3),
 });
 
 export type iPad = z.infer<typeof iPadSchema>;
