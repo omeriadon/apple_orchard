@@ -5,7 +5,6 @@ import {
 	Camera,
 	Cpu,
 	Monitor,
-	ScanFace,
 	Plug,
 	Sun,
 	RefreshCcw,
@@ -16,6 +15,9 @@ import {
 	Circle,
 	Aperture,
 	Microscope,
+	SwitchCamera,
+	ZoomIn,
+	Proportions,
 } from "lucide-react";
 import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
 import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
@@ -63,6 +65,16 @@ export default function IphoneCard({
 			icon: RefreshCcw,
 		},
 		{
+			title: "Top Structure",
+			value:
+				device.topStructure === "dynamicIsland" ? (
+					<div>Dynamic Island</div>
+				) : (
+					<span className={styles.old}>Notch</span>
+				),
+			icon: RefreshCcw,
+		},
+		{
 			title: "Display Shield",
 			value:
 				device.displayShield === "ceramicShield" ? (
@@ -97,6 +109,15 @@ export default function IphoneCard({
 			title: "Battery",
 			value: `${device.videoPlaybackHours} hr`,
 			icon: BatteryCharging,
+		},
+		{
+			title: "MagSafe",
+			value: device.magsafe ? (
+				<div>Yes</div>
+			) : (
+				<span className={styles.bad}>No</span>
+			),
+			icon: Plug,
 		},
 		{
 			title: "Port",
@@ -162,17 +183,7 @@ export default function IphoneCard({
 				) : (
 					<span>18 MP Center Stage</span>
 				),
-			icon: Microscope,
-		},
-		{
-			title: "Front Camera",
-			value:
-				device.frontCameraType == "12 MP" ? (
-					<span className={styles.old}>12 MP</span>
-				) : (
-					<span>18 MP Center Stage</span>
-				),
-			icon: Microscope,
+			icon: SwitchCamera,
 		},
 		{
 			title: "Optical Zoom Options",
@@ -184,7 +195,7 @@ export default function IphoneCard({
 				) : (
 					<span>{device.opticalZoomOptions.join(", ")}</span>
 				),
-			icon: Microscope,
+			icon: ZoomIn,
 		},
 		{
 			title: "Camera Resolutions",
@@ -195,7 +206,7 @@ export default function IphoneCard({
 			) : (
 				<span>{device.cameraResolutions.join(" MP, ")} MP</span>
 			),
-			icon: Microscope,
+			icon: Proportions,
 		},
 	];
 
