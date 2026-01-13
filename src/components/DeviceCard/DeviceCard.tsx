@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
 import { Device } from "@/types/device";
 import { CalendarPlus, CalendarMinus } from "lucide-react";
@@ -28,11 +28,12 @@ export default function DeviceCard({
 	const [pos, setPos] = useState({ x: 0, y: 0 });
 	const offset = useRef({ x: 0, y: 0 });
 	const dragging = useRef(false);
+	const hasPromoted = useRef(false);
 
 	const onPointerDown = (e: React.PointerEvent) => {
 		if (!open) return;
 
-		onPromote?.(); // ALWAYS promote on touch
+		onPromote?.();
 
 		dragging.current = true;
 		ref.current?.setPointerCapture(e.pointerId);
@@ -56,6 +57,18 @@ export default function DeviceCard({
 		dragging.current = false;
 		ref.current?.releasePointerCapture(e.pointerId);
 	};
+
+	useEffect(() => {
+		if (!open) {
+			hasPromoted.current = false;
+			return;
+		}
+
+		if (!hasPromoted.current) {
+			onPromote?.();
+			hasPromoted.current = true;
+		}
+	}, [open, onPromote]);
 
 	return (
 		<article

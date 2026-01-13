@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { DeviceSchema } from "./device";
 
-const iPadSchema = DeviceSchema.extend({
+export const iPadSchema = DeviceSchema.extend({
 	maxBrightness: z.number().int(),
 	screenSize: z.number(),
 	proMotion: z.boolean(),

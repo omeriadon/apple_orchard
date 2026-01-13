@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Background from "@/components/Background";
 import { ViewTransition } from "react";
-import { View } from "lucide-react";
 
 export const metadata: Metadata = {
 	title: "Apple Orchard",

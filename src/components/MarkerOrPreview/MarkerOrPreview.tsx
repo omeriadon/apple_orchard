@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import styles from "./MarkerOrPreview.module.css";
 
@@ -9,13 +9,12 @@ type Props = {
 };
 
 export default function MarkerOrPreview({ id, familyID }: Props) {
-	const url = `/images/iphones/${familyID}/${id}.png`;
-
-	const [failed, setFailed] = useState(false);
-
-	useEffect(() => {
-		setFailed(false);
-	}, [id, familyID]);
+	const url = useMemo(
+		() => `/images/iphones/${familyID}/${id}.png`,
+		[id, familyID],
+	);
+	const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
+	const failed = failedUrls.has(url);
 
 	if (failed) {
 		return (
@@ -35,7 +34,14 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 					unoptimized
 					sizes="120px"
 					className={styles.previewImg}
-					onError={() => setFailed(true)}
+					onError={() =>
+						setFailedUrls((prev) => {
+							if (prev.has(url)) return prev;
+							const next = new Set(prev);
+							next.add(url);
+							return next;
+						})
+					}
 				/>
 			</div>
 		</div>
