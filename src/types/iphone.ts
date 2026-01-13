@@ -17,8 +17,6 @@ export const iPhoneSchema = DeviceSchema.extend({
 	magsafe: z.boolean(),
 	actionButton: z.boolean(),
 
-	authentication: z.enum(["faceID", "touchID"]),
-
 	videoPlaybackHours: z.number().int(),
 
 	amountOfCameras: z.number().int().min(1).max(3),

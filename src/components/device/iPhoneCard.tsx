@@ -12,6 +12,10 @@ import {
 	MemoryStick,
 	HardDrive,
 	Brain,
+	ShieldPlus,
+	Circle,
+	Aperture,
+	Microscope,
 } from "lucide-react";
 import type { DeviceCardRowProps } from "../DeviceCardRow/DeviceCardRow";
 import styles from "@/components/DeviceCardRow/deviceCardRow.module.css";
@@ -58,6 +62,16 @@ export default function IphoneCard({
 			),
 			icon: RefreshCcw,
 		},
+		{
+			title: "Display Shield",
+			value:
+				device.displayShield === "ceramicShield" ? (
+					<span className={styles.old}>Ceramic Shield</span>
+				) : (
+					<span>Ceramic Shield 2</span>
+				),
+			icon: ShieldPlus,
+		},
 		{ title: "CPU", value: device.processor, icon: Cpu },
 		{
 			title: "RAM",
@@ -95,14 +109,13 @@ export default function IphoneCard({
 			icon: Plug,
 		},
 		{
-			title: "Authentication",
-			value:
-				device.authentication === "touchID" ? (
-					<span className={styles.old}>Touch ID</span>
-				) : (
-					<div>Face ID</div>
-				),
-			icon: ScanFace,
+			title: "Action Button",
+			value: !device.actionButton ? (
+				<span className={styles.old}>No</span>
+			) : (
+				<div>Yes</div>
+			),
+			icon: Circle,
 		},
 		{
 			title: "Apple Intelligence",
@@ -121,7 +134,68 @@ export default function IphoneCard({
 				) : (
 					<span>{device.amountOfCameras}</span>
 				),
+			icon: Aperture,
+		},
+		{
+			title: "Camera Control",
+			value: !device.cameraControl ? (
+				<span className={styles.old}>No</span>
+			) : (
+				<span>Yes</span>
+			),
 			icon: Camera,
+		},
+		{
+			title: "Macro",
+			value: !device.macroPhotos ? (
+				<span className={styles.bad}>No</span>
+			) : (
+				<span>Yes</span>
+			),
+			icon: Microscope,
+		},
+		{
+			title: "Front Camera",
+			value:
+				device.frontCameraType == "12 MP" ? (
+					<span className={styles.old}>12 MP</span>
+				) : (
+					<span>18 MP Center Stage</span>
+				),
+			icon: Microscope,
+		},
+		{
+			title: "Front Camera",
+			value:
+				device.frontCameraType == "12 MP" ? (
+					<span className={styles.old}>12 MP</span>
+				) : (
+					<span>18 MP Center Stage</span>
+				),
+			icon: Microscope,
+		},
+		{
+			title: "Optical Zoom Options",
+			value:
+				device.opticalZoomOptions.length < 3 ? (
+					<span className={styles.bad}>
+						{device.opticalZoomOptions.join(", ")}
+					</span>
+				) : (
+					<span>{device.opticalZoomOptions.join(", ")}</span>
+				),
+			icon: Microscope,
+		},
+		{
+			title: "Camera Resolutions",
+			value: device.cameraResolutions.includes(12) ? (
+				<span className={styles.bad}>
+					{device.cameraResolutions.join(" MP, ")} MP
+				</span>
+			) : (
+				<span>{device.cameraResolutions.join(" MP, ")} MP</span>
+			),
+			icon: Microscope,
 		},
 	];
 
