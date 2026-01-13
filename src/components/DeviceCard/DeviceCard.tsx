@@ -19,6 +19,7 @@ type Props = {
 export default function DeviceCard({
 	device,
 	infoRows = [],
+
 	onClose,
 	open,
 	onPromote,
