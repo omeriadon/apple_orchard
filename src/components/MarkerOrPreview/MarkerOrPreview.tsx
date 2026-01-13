@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import styles from "./MarkerOrPreview.module.css";
 
 type Props = {
@@ -27,15 +26,13 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 
 	return (
 		<div className={styles.markerBox}>
-			<Image
+			<img
 				src={url}
 				alt={id}
-				width={120}
-				height={150}
-				sizes="120px"
 				className={styles.previewImg}
-				style={{ width: "auto", height: "auto" }}
 				onError={() => setFailed(true)}
+				decoding="async"
+				loading="lazy"
 			/>
 		</div>
 	);
