@@ -19,7 +19,7 @@ const _iPads: iPad[] = [
 		authentication: "faceID",
 		amountOfCameras: 3,
 		batteryMah: 5088,
-		appleIntelligence: false
+		appleIntelligence: false,
 	},
 ];
 

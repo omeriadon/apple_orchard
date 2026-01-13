@@ -9,14 +9,10 @@ type Props = {
 	size: string;
 };
 
-export default function MarkerOrPreview({
-	id,
-	familyID,
-	size
-}: Props) {
+export default function MarkerOrPreview({ id, familyID, size }: Props) {
 	const url = useMemo(
 		() => `/images/iphones/${familyID}/${id}.png`,
-		[id, familyID]
+		[id, familyID],
 	);
 	const [failedUrls, setFailedUrls] = useState<Set<string>>(() => new Set());
 	const failed = failedUrls.has(url);
