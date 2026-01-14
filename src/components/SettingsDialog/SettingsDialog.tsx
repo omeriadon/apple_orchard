@@ -15,7 +15,7 @@ export default function SettingsDialog({
 	onClose,
 	required = false,
 }: Props) {
-	const { override, setOverride, resetOverride } = useUserPricingOverride();
+	const { override, setOverride } = useUserPricingOverride();
 	const [multiplier, setMultiplier] = useState(String(override.multiplier));
 	const [error, setError] = useState("");
 
@@ -29,11 +29,6 @@ export default function SettingsDialog({
 			return;
 		}
 		setOverride({ multiplier: parsed });
-		onClose();
-	};
-
-	const handleReset = () => {
-		resetOverride();
 		onClose();
 	};
 
@@ -61,13 +56,6 @@ export default function SettingsDialog({
 					<div className={styles.actions}>
 						<button type="submit" className={styles.primary}>
 							Save
-						</button>
-						<button
-							type="button"
-							className={styles.secondary}
-							onClick={handleReset}
-						>
-							Reset
 						</button>
 					</div>
 				</form>
