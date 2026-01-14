@@ -11,7 +11,7 @@ type Props = {
 	storage?: number;
 };
 
-const PLACEHOLDER = "~ $—";
+const PLACEHOLDER = "?";
 
 export default function RegionalPrice({ pricing, storage }: Props) {
 	const { override } = useUserPricingOverride();
