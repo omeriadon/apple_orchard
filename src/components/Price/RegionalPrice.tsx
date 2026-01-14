@@ -60,18 +60,26 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 				>
 					<div>
 						<div className={styles.popoverPrices}>
-							<div>New: ${base.amount}</div>
-							{base.refurbished && (
-								<div>Refurbished: ${base.refurbished}</div>
-							)}
 							{base.storage &&
 								Object.entries(base.storage).map(
 									([size, price]) => (
-										<div key={size}>
-											{size} GB: ${price}
+										<div
+											key={size}
+											data-label={`${size} GB`}
+										>
+											${price}
 										</div>
 									),
 								)}
+
+							<div className={styles.spacer} />
+
+							{base.refurbished && (
+								<div data-label="Refurbished">
+									{" "}
+									${base.refurbished}{" "}
+								</div>
+							)}
 						</div>
 					</div>
 				</PopoverContent>

@@ -91,5 +91,23 @@
 }
 
 .popoverPrices {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
 	font-size: 0.9rem;
+}
+
+.popoverPrices > div {
+	display: flex;
+	justify-content: space-between;
+}
+
+.popoverPrices > div::before {
+	content: attr(data-label);
+	opacity: 0.6; /* dimmed label */
+	margin-right: 2rem;
+}
+
+.spacer {
+	height: 0.5rem;
 }
