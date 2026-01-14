@@ -20,21 +20,18 @@ export default function SettingsDialog({
 	const [error, setError] = useState("");
 
 	const [visible, setVisible] = useState(false);
-	const [animating, setAnimating] = useState(false); // true while animating
+	const [animating, setAnimating] = useState(false);
 	const [blur, setBlur] = useState(0);
 
-	// Handle dialog mount + enter animation
 	useEffect(() => {
 		if (open) {
 			setVisible(true);
-			setBlur(0); // start from 0
+			setBlur(0);
 			setAnimating(true);
 
-			// animate in on next frame
 			const frame = requestAnimationFrame(() => setBlur(8));
 			return () => cancelAnimationFrame(frame);
 		} else if (visible) {
-			// animate out
 			setAnimating(true);
 			setBlur(0);
 			const timer = setTimeout(() => {
@@ -45,7 +42,6 @@ export default function SettingsDialog({
 		}
 	}, [open]);
 
-	// Esc handling
 	useEffect(() => {
 		if (!visible) return;
 

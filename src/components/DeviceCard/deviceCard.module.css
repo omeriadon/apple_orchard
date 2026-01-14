@@ -1,7 +1,7 @@
 .wrapper {
 	width: 320px;
 	user-select: none;
-	position: relative; /* Default context */
+	position: relative;
 }
 
 .floating {
@@ -104,7 +104,7 @@
 
 .popoverPrices > div::before {
 	content: attr(data-label);
-	opacity: 0.6; /* dimmed label */
+	opacity: 0.6;
 	margin-right: 2rem;
 }
 

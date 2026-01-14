@@ -84,7 +84,6 @@ export function useUserPricingOverride() {
 		if (stored) {
 			applyOverride(stored);
 		}
-		// Delay setHydrated to avoid synchronous state update in effect
 		const timer = setTimeout(() => setHydrated(true), 0);
 		return () => clearTimeout(timer);
 	}, []);

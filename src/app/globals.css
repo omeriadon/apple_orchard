@@ -60,18 +60,15 @@ body {
 .site-content > main {
 	display: flex;
 	flex-direction: column;
-	flex: 1 1 auto; /* take all remaining space under the navbar */
-	height: calc(
-		100vh - var(--navbar-height)
-	); /* ensure main fills viewport minus navbar */
-	overflow: auto; /* scroll inside main instead of the whole viewport */
+	flex: 1 1 auto;
+	height: calc(100vh - var(--navbar-height));
+	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	/* hide native scrollbars - we'll implement a custom one later */
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
-/* WebKit */
 .site-content > main::-webkit-scrollbar {
 	display: none;
 }
