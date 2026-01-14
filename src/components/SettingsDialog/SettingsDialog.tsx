@@ -44,19 +44,11 @@ export default function SettingsDialog({
 		>
 			<div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
 				<div className={styles.headerRow}>
-					<h3 className={styles.title}>Currency settings</h3>
-					<button
-						type="button"
-						className={styles.closeButton}
-						disabled={required}
-						onClick={required ? undefined : onClose}
-					>
-						×
-					</button>
+					<h3 className={styles.title}>Currency Settings</h3>
 				</div>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<div className={styles.field}>
-						<label className={styles.label}>Multiplier</label>
+						<label className={styles.label}>Price Multiplier</label>
 						<input
 							className={styles.input}
 							type="number"
@@ -67,15 +59,15 @@ export default function SettingsDialog({
 						/>
 					</div>
 					<div className={styles.actions}>
+						<button type="submit" className={styles.primary}>
+							Save
+						</button>
 						<button
 							type="button"
 							className={styles.secondary}
 							onClick={handleReset}
 						>
-							Reset to 1x
-						</button>
-						<button type="submit" className={styles.primary}>
-							Save
+							Reset
 						</button>
 					</div>
 				</form>

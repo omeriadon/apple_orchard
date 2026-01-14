@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 
 export type UserPricingOverride = {
 	multiplier: number;
@@ -69,6 +69,7 @@ const persistOverride = (override: UserPricingOverride) => {
 };
 
 export function useUserPricingOverride() {
+	const [hydrated, setHydrated] = useState(false);
 	const override = useSyncExternalStore(
 		(callback) => {
 			subscribers.add(callback);
@@ -83,6 +84,9 @@ export function useUserPricingOverride() {
 		if (stored) {
 			applyOverride(stored);
 		}
+		// Delay setHydrated to avoid synchronous state update in effect
+		const timer = setTimeout(() => setHydrated(true), 0);
+		return () => clearTimeout(timer);
 	}, []);
 
 	useEffect(() => {
@@ -114,5 +118,5 @@ export function useUserPricingOverride() {
 		persistOverride(DEFAULT_OVERRIDE);
 	}, []);
 
-	return { override, setOverride, resetOverride } as const;
+	return { override, setOverride, resetOverride, hydrated } as const;
 }

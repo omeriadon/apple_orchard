@@ -11,16 +11,16 @@ import { useUserPricingOverride } from "@/lib/userPricing";
 export default function Navbar() {
 	const [settingsOpen, setSettingsOpen] = useState(false);
 	const center = navItems.filter((i) => i.slot === "center");
-	const { override } = useUserPricingOverride();
+	const { override, hydrated } = useUserPricingOverride();
 
 	useEffect(() => {
 		if (typeof window === "undefined") return;
-		if (settingsOpen) return;
+		if (settingsOpen || !hydrated) return;
 
 		if (!override.explicit) {
 			setTimeout(() => setSettingsOpen(true), 0);
 		}
-	}, [override.explicit, settingsOpen]);
+	}, [override.explicit, settingsOpen, hydrated]);
 
 	return (
 		<>

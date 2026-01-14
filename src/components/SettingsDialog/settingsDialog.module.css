@@ -30,17 +30,8 @@
 
 .title {
 	margin: 0;
-	font-size: 1.3rem;
+	font-size: 1.9rem;
 	letter-spacing: 0.04em;
-}
-
-.closeButton {
-	background: transparent;
-	border: none;
-	color: white;
-	font-size: 1.4rem;
-	cursor: pointer;
-	padding: 0.35rem;
 }
 
 .description {
@@ -101,15 +92,6 @@
 	padding: 0.65rem 1.1rem;
 	border-radius: 12px;
 	font-weight: 600;
-	cursor: pointer;
-}
-
-.secondary {
-	background: transparent;
-	border: 1px solid rgba(255, 255, 255, 0.4);
-	color: white;
-	border-radius: 12px;
-	padding: 0.65rem 1rem;
 	cursor: pointer;
 }
 
