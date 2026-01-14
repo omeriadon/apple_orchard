@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import styles from "./settingsDialog.module.css";
 import { useUserPricingOverride } from "@/lib/userPricing";
 
@@ -19,18 +19,50 @@ export default function SettingsDialog({
 	const [multiplier, setMultiplier] = useState(String(override.multiplier));
 	const [error, setError] = useState("");
 
+	const [visible, setVisible] = useState(false);
+	const [animating, setAnimating] = useState(false); // true while animating
+	const [blur, setBlur] = useState(0);
+
+	// Handle dialog mount + enter animation
 	useEffect(() => {
-		if (!open) return;
+		if (open) {
+			setVisible(true);
+			setBlur(0); // start from 0
+			setAnimating(true);
+
+			// animate in on next frame
+			const frame = requestAnimationFrame(() => setBlur(8));
+			return () => cancelAnimationFrame(frame);
+		} else if (visible) {
+			// animate out
+			setAnimating(true);
+			setBlur(0);
+			const timer = setTimeout(() => {
+				setVisible(false);
+				setAnimating(false);
+			}, 200);
+			return () => clearTimeout(timer);
+		}
+	}, [open]);
+
+	// Esc handling
+	useEffect(() => {
+		if (!visible) return;
 
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === "Escape" && !required) onClose();
+			if (e.key === "Escape" && !required) handleClose();
 		};
-
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, [open, onClose, required]);
+	}, [visible, required]);
 
-	if (!open) return null;
+	const handleClose = () => {
+		if (!visible || !animating) return;
+		setBlur(0);
+		setTimeout(() => onClose(), 200);
+	};
+
+	if (!visible) return null;
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
@@ -40,15 +72,28 @@ export default function SettingsDialog({
 			return;
 		}
 		setOverride({ multiplier: parsed });
-		onClose();
+		handleClose();
 	};
 
 	return (
 		<div
 			className={styles.backdrop}
-			onClick={required ? undefined : onClose}
+			style={{
+				backdropFilter: `blur(${blur}px)`,
+				opacity: blur / 8,
+				transition: "backdrop-filter 0.2s ease, opacity 0.2s ease",
+			}}
+			onClick={required ? undefined : handleClose}
 		>
-			<div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
+			<div
+				className={styles.dialog}
+				style={{
+					transform: `scale(${0.9 + 0.1 * (blur / 8)})`,
+					opacity: blur / 8,
+					transition: "transform 0.2s ease, opacity 0.2s ease",
+				}}
+				onClick={(e) => e.stopPropagation()}
+			>
 				<div className={styles.headerRow}>
 					<h3 className={styles.title}>Currency Settings</h3>
 				</div>
