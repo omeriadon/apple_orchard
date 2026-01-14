@@ -73,11 +73,15 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 									),
 								)}
 
-							<div className={styles.spacer} />
+							{base.refurbished && (
+								<div className={styles.spacer} />
+							)}
 
 							{base.refurbished && (
 								<div data-label="Refurbished">
-									~ ${base.refurbished}
+									<div data-label="Refurbished">
+										~ ${base.refurbished}
+									</div>
 								</div>
 							)}
 						</div>
