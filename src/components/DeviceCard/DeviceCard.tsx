@@ -64,8 +64,8 @@ export default function DeviceCard({
 		ref.current?.releasePointerCapture(e.pointerId);
 	};
 
-	const className = [
-		styles.card,
+	const wrapperClassName = [
+		styles.wrapper,
 		isFloating ? styles.floating : styles.pinned,
 		open ? styles.open : "",
 	]
@@ -83,7 +83,7 @@ export default function DeviceCard({
 	return (
 		<article
 			ref={ref}
-			className={className}
+			className={wrapperClassName}
 			aria-labelledby={`device-${device.id}`}
 			{...pointerHandlers}
 			style={{
@@ -95,59 +95,64 @@ export default function DeviceCard({
 				zIndex: variant === "pinned" ? (zIndex ?? 20) : (zIndex ?? 20),
 			}}
 		>
-			<header className={styles.header}>
-				<div className={styles.flex}>
-					<h2 id={`device-${device.id}`}>{device.name}</h2>
+			<div className={styles.cardInner}>
+				<header className={styles.header}>
+					<div className={styles.flex}>
+						<h2 id={`device-${device.id}`}>{device.name}</h2>
 
-					<div className={styles.controls}>
-						{isFloating && onPin && (
-							<button
-								type="button"
-								className={styles.close}
-								onPointerDown={(e) => e.stopPropagation()}
-								onClick={() => onPin?.()}
-								aria-label={`Pin ${device.name}`}
-							>
-								<Pin size={16} />
-							</button>
-						)}
+						<div className={styles.controls}>
+							{isFloating && onPin && (
+								<button
+									type="button"
+									className={styles.close}
+									onPointerDown={(e) => e.stopPropagation()}
+									onClick={() => onPin?.()}
+									aria-label={`Pin ${device.name}`}
+								>
+									<Pin size={16} />
+								</button>
+							)}
 
-						{onClose && (
-							<button
-								type="button"
-								className={styles.close}
-								onPointerDown={(e) => e.stopPropagation()}
-								onClick={onClose}
-							>
-								✕
-							</button>
-						)}
+							{onClose && (
+								<button
+									type="button"
+									className={styles.close}
+									onPointerDown={(e) => e.stopPropagation()}
+									onClick={onClose}
+								>
+									✕
+								</button>
+							)}
+						</div>
 					</div>
-				</div>
 
-				<div className={styles.meta}>
-					<span className={styles.meta2}>
-						<CalendarPlus size={16} />
-						{device.introduced}
-					</span>
-					<span className={styles.meta2}>
-						<CalendarMinus size={16} />
-						{device.supportedUntil}
-					</span>
-					<RegionalPrice
-						pricing={device.pricing}
-						storage={device.baseStorage}
-					/>
-				</div>
-			</header>
+					<div className={styles.meta}>
+						<span className={styles.meta2}>
+							<CalendarPlus size={16} />
+							{device.introduced}
+						</span>
+						<span className={styles.meta2}>
+							<CalendarMinus size={16} />
+							{device.supportedUntil}
+						</span>
+						<RegionalPrice
+							pricing={device.pricing}
+							storage={device.baseStorage}
+						/>
+					</div>
+				</header>
 
-			<section className={styles.body}>
-				<div className={styles.bodyGrid}>
-					{infoRows.map((row, index) => (
-						<DeviceCardRow key={`${row.title}-${index}`} {...row} />
-					))}
-				</div>
-			</section>
+				<section className={styles.body}>
+					<div className={styles.bodyGrid}>
+						{infoRows.map((row, index) => (
+							<DeviceCardRow
+								key={`${row.title}-${index}`}
+								{...row}
+							/>
+						))}
+					</div>
+				</section>
+			</div>
 		</article>
 	);
 }

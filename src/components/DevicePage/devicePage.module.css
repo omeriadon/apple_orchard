@@ -96,11 +96,11 @@
 	appearance: none;
 	-webkit-tap-highlight-color: transparent;
 	touch-action: manipulation;
+	transition: all 0.2s ease;
 }
 
 .itemButton:hover {
-	filter: none;
-	transform: none;
+	transform: scale(1.1);
 }
 
 .label {
