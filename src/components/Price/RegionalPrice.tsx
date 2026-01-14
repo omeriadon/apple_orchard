@@ -1,11 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Pricing } from "@/types/iphone";
-import { computeRegionalPrice } from "@/lib/pricing";
-import { detectRegion } from "@/lib/region";
+import { computeBasePrice } from "@/lib/pricing";
 import { useUserPricingOverride } from "@/lib/userPricing";
-import { CircleDollarSign } from "lucide-react";
+import type { Pricing } from "@/types/iphone";
 import styles from "@/components/DeviceCard/deviceCard.module.css";
 
 type Props = {
@@ -13,48 +11,42 @@ type Props = {
 	storage?: number;
 };
 
-const PLACEHOLDER = "—";
-
-function formatNumber(amount: number) {
-	return new Intl.NumberFormat(undefined, {
-		minimumFractionDigits: 0,
-		maximumFractionDigits: 0,
-	}).format(Math.round(amount));
-}
+const PLACEHOLDER = "~ $—";
 
 export default function RegionalPrice({ pricing, storage }: Props) {
-	const [isHydrated, setIsHydrated] = useState(false);
 	const { override } = useUserPricingOverride();
+	const [hydrated, setHydrated] = useState(false);
 
 	useEffect(() => {
-		const timer = setTimeout(() => setIsHydrated(true), 0);
+		const timer = setTimeout(() => setHydrated(true), 0);
 		return () => clearTimeout(timer);
 	}, []);
 
-	const displayText = (() => {
-		if (!pricing) return "?";
-		if (!isHydrated) return PLACEHOLDER;
+	if (!hydrated || !pricing) {
+		return (
+			<span className={`${styles.meta2} ${styles.price}`}>
+				{PLACEHOLDER}
+			</span>
+		);
+	}
 
-		if (override) {
-			const basePrice = computeRegionalPrice(pricing, "AU", storage);
-			if (!basePrice) return "?";
-			const convertedAmount = Math.round(
-				basePrice.amount * override.multiplier,
-			);
-			return formatNumber(convertedAmount);
-		}
+	const base = computeBasePrice(pricing, storage);
+	if (!base) {
+		return (
+			<span className={`${styles.meta2} ${styles.price}`}>
+				{PLACEHOLDER}
+			</span>
+		);
+	}
 
-		const region = detectRegion();
-		const price = computeRegionalPrice(pricing, region, storage);
-		if (!price) return "?";
-
-		return formatNumber(price.amount);
-	})();
+	const converted = Math.round(base.amount * override.multiplier);
+	const formatted = new Intl.NumberFormat(undefined, {
+		maximumFractionDigits: 0,
+	}).format(converted);
 
 	return (
 		<span className={`${styles.meta2} ${styles.price}`}>
-			<CircleDollarSign size={17} />
-			{displayText}
+			~ ${formatted}
 		</span>
 	);
 }

@@ -1,26 +1,13 @@
 import type { Pricing } from "@/types/iphone";
-import { regionMultipliers } from "@/data/regionMultipliers";
 
-export function computeRegionalPrice(
+export function computeBasePrice(
 	pricing: Pricing | undefined,
-	region = "AU",
 	storage?: number,
 ) {
-	if (!pricing) return null;
-	const base = pricing.base;
-	if (!base) return null;
+	if (!pricing?.base) return null;
 
-	const baseAmount = storage
-		? (base.storage?.[storage] ?? base.new)
-		: base.new;
-
-	const deviceRegionInfo = pricing.regions?.[region];
-	const globalRegionInfo = regionMultipliers[region];
-	const regionInfo = deviceRegionInfo ??
-		globalRegionInfo ?? { multiplier: 1, currency: base.baseCurrency };
-
-	const amount = Math.round(baseAmount * regionInfo.multiplier);
-	const currency = regionInfo.currency ?? base.baseCurrency;
-
-	return { amount, currency };
+	const amount = storage
+		? (pricing.base.storage?.[storage] ?? pricing.base.new)
+		: pricing.base.new;
+	return { amount, currency: "AUD" };
 }

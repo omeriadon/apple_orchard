@@ -1,119 +1,70 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import styles from "./settingsDialog.module.css";
 import { useUserPricingOverride } from "@/lib/userPricing";
 
 type Props = {
 	open: boolean;
 	onClose: () => void;
+	required?: boolean;
 };
 
-export default function SettingsDialog({ open, onClose }: Props) {
-	const { override, setOverride } = useUserPricingOverride();
-	const [multiplier, setMultiplier] = useState("");
+export default function SettingsDialog({
+	open,
+	onClose,
+	required = false,
+}: Props) {
+	const { override, setOverride, resetOverride } = useUserPricingOverride();
+	const [multiplier, setMultiplier] = useState(String(override.multiplier));
 	const [error, setError] = useState("");
-	const [currency, setCurrency] = useState("");
-	useEffect(() => {
-		if (!open) return;
-		const timer = setTimeout(() => {
-			setMultiplier(override ? String(override.multiplier) : "");
-			setError("");
-		}, 0);
-		return () => clearTimeout(timer);
-	}, [open, override]);
 
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+	if (!open) return null;
+
+	const handleSubmit = (e: FormEvent) => {
+		e.preventDefault();
 		const parsed = Number(multiplier);
 		if (!Number.isFinite(parsed) || parsed <= 0) {
 			setError("Multiplier must be a number greater than zero.");
 			return;
 		}
-
 		setOverride({ multiplier: parsed });
 		onClose();
 	};
 
 	const handleReset = () => {
-		setOverride(null);
+		resetOverride();
 		onClose();
 	};
 
-	if (!open) return null;
-
 	return (
-		<div className={styles.backdrop} onClick={onClose}>
-			<div
-				className={styles.dialog}
-				role="dialog"
-				aria-modal="true"
-				onClick={(event) => event.stopPropagation()}
-			>
+		<div
+			className={styles.backdrop}
+			onClick={required ? undefined : onClose}
+		>
+			<div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
 				<div className={styles.headerRow}>
 					<h3 className={styles.title}>Currency settings</h3>
 					<button
 						type="button"
 						className={styles.closeButton}
-						onClick={onClose}
-						aria-label="Close settings"
+						disabled={required}
+						onClick={required ? undefined : onClose}
 					>
 						×
 					</button>
 				</div>
-				<p className={styles.description}>
-					Tell us how much 1 AUD equals in your currency so the
-					timeline reflects the prices you expect.
-				</p>
-				{override && (
-					<p className={styles.helper}>
-						Current override: 1 AUD = {override.multiplier}
-					</p>
-				)}
 				<form className={styles.form} onSubmit={handleSubmit}>
-					<div className={styles.field} style={{ display: "none" }}>
-						<label
-							className={styles.label}
-							htmlFor="currency-code"
-						></label>
-						<input
-							id="currency-code"
-							className={styles.input}
-							value={currency}
-							onChange={(event) =>
-								setCurrency(event.target.value)
-							}
-							maxLength={3}
-							placeholder="USD"
-							autoComplete="off"
-						/>
-						<span className={styles.helper}>
-							Example: 1 AUD = 0.67 USD
-						</span>
-					</div>
 					<div className={styles.field}>
-						<label
-							className={styles.label}
-							htmlFor="currency-multiplier"
-						>
-							Multiplier
-						</label>
+						<label className={styles.label}>Multiplier</label>
 						<input
-							id="currency-multiplier"
 							className={styles.input}
 							type="number"
 							min="0"
 							step="0.01"
-							inputMode="decimal"
 							value={multiplier}
-							onChange={(event) =>
-								setMultiplier(event.target.value)
-							}
-							placeholder="0.67"
+							onChange={(e) => setMultiplier(e.target.value)}
 						/>
-						<span className={styles.helper}>
-							Multiply the Australian dollar price by this number.
-						</span>
 					</div>
 					<div className={styles.actions}>
 						<button
@@ -121,7 +72,7 @@ export default function SettingsDialog({ open, onClose }: Props) {
 							className={styles.secondary}
 							onClick={handleReset}
 						>
-							Clear override
+							Reset to 1x
 						</button>
 						<button type="submit" className={styles.primary}>
 							Save
