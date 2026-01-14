@@ -68,6 +68,8 @@
 	flex-wrap: wrap;
 	justify-content: center;
 	margin-top: -40rem;
+	padding-bottom: 1rem;
+	gap: 1rem;
 }
 
 .item {
