@@ -5,6 +5,7 @@ import {
 	CalendarPlus,
 	CalendarMinus,
 	Pin,
+	X,
 	CircleDollarSign,
 } from "lucide-react";
 import RegionalPrice from "@/components/Price/RegionalPrice";
@@ -125,7 +126,7 @@ export default function DeviceCard({
 									onPointerDown={(e) => e.stopPropagation()}
 									onClick={onClose}
 								>
-									✕
+									<X size={22} />
 								</button>
 							)}
 						</div>
