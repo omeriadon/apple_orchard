@@ -5,7 +5,7 @@ import type { Pricing } from "@/types/iphone";
 import { computeRegionalPrice } from "@/lib/pricing";
 import { detectRegion } from "@/lib/region";
 import { useUserPricingOverride } from "@/lib/userPricing";
-import { DollarSign } from "lucide-react";
+import { CircleDollarSign } from "lucide-react";
 import styles from "@/components/DeviceCard/deviceCard.module.css";
 
 type Props = {
@@ -32,12 +32,12 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 	}, []);
 
 	const displayText = (() => {
-		if (!pricing) return "N/A";
+		if (!pricing) return "?";
 		if (!isHydrated) return PLACEHOLDER;
 
 		if (override) {
 			const basePrice = computeRegionalPrice(pricing, "AU", storage);
-			if (!basePrice) return "N/A";
+			if (!basePrice) return "?";
 			const convertedAmount = Math.round(
 				basePrice.amount * override.multiplier,
 			);
@@ -46,14 +46,14 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 
 		const region = detectRegion();
 		const price = computeRegionalPrice(pricing, region, storage);
-		if (!price) return "N/A";
+		if (!price) return "?";
 
 		return formatNumber(price.amount);
 	})();
 
 	return (
 		<span className={`${styles.meta2} ${styles.price}`}>
-			<DollarSign size={14} />
+			<CircleDollarSign size={17} />
 			{displayText}
 		</span>
 	);

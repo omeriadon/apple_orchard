@@ -30,13 +30,9 @@ const _iPhones: iPhone[] = [
 		cameraResolutions: [48, 48, 48],
 		pricing: {
 			base: {
-				new: 3299,
-				refurbished: 2599,
-				storage: { 256: 3299, 512: 3599, 1024: 3999 },
-				baseCurrency: "AUD",
-			},
-			regions: {
-				AU: { multiplier: 1, currency: "AUD" },
+				new: 2199,
+				refurbished: 2059,
+				storage: { 256: 2199, 512: 2599, 1024: 2999, 2048: 3799 },
 			},
 		},
 	},
@@ -67,13 +63,9 @@ const _iPhones: iPhone[] = [
 		cameraResolutions: [48, 48, 48],
 		pricing: {
 			base: {
-				new: 2999,
-				refurbished: 2399,
-				storage: { 256: 2999, 512: 3299, 1024: 3699 },
-				baseCurrency: "AUD",
-			},
-			regions: {
-				AU: { multiplier: 1, currency: "AUD" },
+				new: 1999,
+				refurbished: 1829,
+				storage: { 256: 1999, 512: 2399, 1024: 2799 },
 			},
 		},
 	},
@@ -104,12 +96,9 @@ const _iPhones: iPhone[] = [
 		cameraResolutions: [48],
 		pricing: {
 			base: {
-				new: 1999,
-				refurbished: 1499,
-				storage: { 256: 1999, 512: 2299 },
-				baseCurrency: "AUD",
+				new: 1799,
+				storage: { 256: 1799, 512: 2199, 1024: 2599 },
 			},
-			regions: { AU: { multiplier: 1, currency: "AUD" } },
 		},
 	},
 	{
@@ -137,6 +126,13 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "18 MP Center Stage",
 		opticalZoomOptions: [0.5, 1, 2],
 		cameraResolutions: [48, 48],
+		pricing: {
+			base: {
+				new: 1399,
+				refurbished: 1329,
+				storage: { 256: 1399, 512: 1799 },
+			},
+		},
 	},
 
 	//MARK: - 16
@@ -217,6 +213,13 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2],
 		cameraResolutions: [48, 12],
+		pricing: {
+			base: {
+				new: 1399,
+				refurbished: 1329,
+				storage: { 128: 1399, 256: 1599 },
+			},
+		},
 	},
 	{
 		id: "16",
@@ -243,6 +246,13 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2],
 		cameraResolutions: [48, 12],
+		pricing: {
+			base: {
+				new: 1249,
+				refurbished: 979,
+				storage: { 128: 1249 },
+			},
+		},
 	},
 	{
 		id: "16e",

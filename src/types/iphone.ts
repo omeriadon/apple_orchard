@@ -4,8 +4,7 @@ import { DeviceSchema } from "./device";
 export const PriceBaseSchema = z.object({
 	new: z.number().int().min(0),
 	refurbished: z.number().int().min(0).optional(),
-	storage: z.record(z.number().int(), z.number().int()).optional(),
-	baseCurrency: z.string().optional().default("AUD"),
+	storage: z.record(z.number().int(), z.number().int()),
 });
 
 export const RegionMultiplierSchema = z.object({
@@ -15,7 +14,6 @@ export const RegionMultiplierSchema = z.object({
 
 export const PricingSchema = z.object({
 	base: PriceBaseSchema,
-	regions: z.record(z.string(), RegionMultiplierSchema).optional(),
 });
 
 export type Pricing = z.infer<typeof PricingSchema>;
