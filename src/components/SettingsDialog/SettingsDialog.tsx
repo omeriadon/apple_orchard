@@ -99,6 +99,10 @@ export default function SettingsDialog({
 				</div>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<div className={styles.field}>
+						<p className={styles.helper}>
+							Search up "1 AUD to [your currency]" and paste that
+							here.
+						</p>
 						<label className={styles.label}>Price Multiplier</label>
 						<input
 							className={styles.input}
