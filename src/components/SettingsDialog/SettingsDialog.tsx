@@ -11,14 +11,12 @@ type Props = {
 
 export default function SettingsDialog({ open, onClose }: Props) {
 	const { override, setOverride } = useUserPricingOverride();
-	const [currency, setCurrency] = useState("");
 	const [multiplier, setMultiplier] = useState("");
 	const [error, setError] = useState("");
-
+	const [currency, setCurrency] = useState("");
 	useEffect(() => {
 		if (!open) return;
 		const timer = setTimeout(() => {
-			setCurrency(override?.currency ?? "");
 			setMultiplier(override ? String(override.multiplier) : "");
 			setError("");
 		}, 0);
@@ -27,22 +25,13 @@ export default function SettingsDialog({ open, onClose }: Props) {
 
 	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const normalizedCurrency = currency.trim().toUpperCase();
 		const parsed = Number(multiplier);
-		if (!normalizedCurrency) {
-			setError("Currency code is required.");
-			return;
-		}
-		if (!/^[A-Z]{3}$/.test(normalizedCurrency)) {
-			setError("Use a three-letter currency code like USD or EUR.");
-			return;
-		}
 		if (!Number.isFinite(parsed) || parsed <= 0) {
 			setError("Multiplier must be a number greater than zero.");
 			return;
 		}
 
-		setOverride({ currency: normalizedCurrency, multiplier: parsed });
+		setOverride({ multiplier: parsed });
 		onClose();
 	};
 
@@ -78,15 +67,15 @@ export default function SettingsDialog({ open, onClose }: Props) {
 				</p>
 				{override && (
 					<p className={styles.helper}>
-						Current override: 1 AUD = {override.multiplier}{" "}
-						{override.currency}
+						Current override: 1 AUD = {override.multiplier}
 					</p>
 				)}
 				<form className={styles.form} onSubmit={handleSubmit}>
-					<div className={styles.field}>
-						<label className={styles.label} htmlFor="currency-code">
-							Currency code
-						</label>
+					<div className={styles.field} style={{ display: "none" }}>
+						<label
+							className={styles.label}
+							htmlFor="currency-code"
+						></label>
 						<input
 							id="currency-code"
 							className={styles.input}

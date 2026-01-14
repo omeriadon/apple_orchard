@@ -2,11 +2,11 @@
 	position: relative;
 	width: 120px;
 	height: 150px;
+	flex: 0 0 auto;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	margin-bottom: 0.5rem;
-	transition: all 0.15s ease;
 }
 
 .marker {
@@ -31,13 +31,6 @@
 }
 
 .previewImg {
-	display: block;
-	flex: 0 0 auto;
 	object-fit: contain;
 	border-radius: 6px;
-	width: auto;
-	height: auto;
-	max-width: 120px;
-	max-height: 150px;
-	min-width: 40px; /* prevent collapsing to an extremely small width when parent changes */
 }

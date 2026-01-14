@@ -32,8 +32,7 @@ export default function MarkerOrPreview({ id, familyID }: Props) {
 				onError={() => setFailedKey(renderKey)}
 				decoding="async"
 				loading="lazy"
-				width={120}
-				height={150}
+				fill
 				sizes="120px"
 			/>
 		</div>

@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
 export type UserPricingOverride = {
-	currency: string;
 	multiplier: number;
 };
 
@@ -12,18 +11,15 @@ function parseStoredValue(value: string | null): UserPricingOverride | null {
 	try {
 		const parsed = JSON.parse(value);
 		if (typeof parsed !== "object" || parsed === null) return null;
-		const { currency, multiplier } = parsed as Partial<UserPricingOverride>;
+		const { multiplier } = parsed as Partial<UserPricingOverride>;
 		if (
-			!currency ||
-			typeof currency !== "string" ||
-			!multiplier ||
 			typeof multiplier !== "number" ||
-			!Number.isFinite(multiplier)
+			!Number.isFinite(multiplier) ||
+			multiplier <= 0
 		) {
 			return null;
 		}
 		return {
-			currency: currency.toUpperCase(),
 			multiplier,
 		};
 	} catch {

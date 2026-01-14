@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import type { Pricing } from "@/types/iphone";
 import { computeRegionalPrice } from "@/lib/pricing";
 import { detectRegion } from "@/lib/region";
-import { formatCurrency } from "@/lib/formatCurrency";
 import { useUserPricingOverride } from "@/lib/userPricing";
+import { DollarSign } from "lucide-react";
 import styles from "@/components/DeviceCard/deviceCard.module.css";
 
 type Props = {
@@ -14,6 +14,13 @@ type Props = {
 };
 
 const PLACEHOLDER = "—";
+
+function formatNumber(amount: number) {
+	return new Intl.NumberFormat(undefined, {
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0,
+	}).format(Math.round(amount));
+}
 
 export default function RegionalPrice({ pricing, storage }: Props) {
 	const [isHydrated, setIsHydrated] = useState(false);
@@ -34,18 +41,20 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 			const convertedAmount = Math.round(
 				basePrice.amount * override.multiplier,
 			);
-			const currency = override.currency ?? basePrice.currency;
-			return formatCurrency(convertedAmount, currency);
+			return formatNumber(convertedAmount);
 		}
 
 		const region = detectRegion();
 		const price = computeRegionalPrice(pricing, region, storage);
 		if (!price) return "N/A";
 
-		return formatCurrency(price.amount, price.currency);
+		return formatNumber(price.amount);
 	})();
 
 	return (
-		<span className={`${styles.meta2} ${styles.price}`}>{displayText}</span>
+		<span className={`${styles.meta2} ${styles.price}`}>
+			<DollarSign size={14} />
+			{displayText}
+		</span>
 	);
 }
