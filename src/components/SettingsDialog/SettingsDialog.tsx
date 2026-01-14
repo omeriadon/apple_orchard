@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import styles from "./settingsDialog.module.css";
 import { useUserPricingOverride } from "@/lib/userPricing";
 
@@ -18,6 +18,17 @@ export default function SettingsDialog({
 	const { override, setOverride } = useUserPricingOverride();
 	const [multiplier, setMultiplier] = useState(String(override.multiplier));
 	const [error, setError] = useState("");
+
+	useEffect(() => {
+		if (!open) return;
+
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === "Escape" && !required) onClose();
+		};
+
+		window.addEventListener("keydown", handleKeyDown);
+		return () => window.removeEventListener("keydown", handleKeyDown);
+	}, [open, onClose, required]);
 
 	if (!open) return null;
 
