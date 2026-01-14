@@ -9,7 +9,7 @@ import {
 	Arrow as PopoverArrow,
 	Close as PopoverClose,
 } from "@radix-ui/react-popover";
-import { X } from "lucide-react";
+import { CircleDollarSign } from "lucide-react";
 import { computeBasePrice, type BasePrice } from "@/lib/pricing";
 import { useUserPricingOverride } from "@/lib/userPricing";
 import type { Pricing } from "@/types/iphone";
@@ -47,8 +47,9 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 				<span
 					className={`${styles.meta2} ${styles.price}`}
 					style={{ cursor: "pointer" }}
+					onPointerDown={(e) => e.stopPropagation()}
 				>
-					~{formatted}
+					<CircleDollarSign size={16} />~{formatted}
 				</span>
 			</PopoverTrigger>
 
