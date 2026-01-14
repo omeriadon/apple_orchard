@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 import styles from "./deviceCard.module.css";
 import { iPhone } from "@/types/iphone";
-import { CalendarPlus, CalendarMinus, Pin } from "lucide-react";
+import {
+	CalendarPlus,
+	CalendarMinus,
+	Pin,
+	CircleDollarSign,
+} from "lucide-react";
 import RegionalPrice from "@/components/Price/RegionalPrice";
 import {
 	DeviceCardRow,
@@ -135,10 +140,14 @@ export default function DeviceCard({
 							<CalendarMinus size={16} />
 							{device.supportedUntil}
 						</span>
-						<RegionalPrice
-							pricing={device.pricing}
-							storage={device.baseStorage}
-						/>
+						<span className={styles.meta2}>
+							<CircleDollarSign size={16} />
+
+							<RegionalPrice
+								pricing={device.pricing}
+								storage={device.baseStorage}
+							/>
+						</span>
 					</div>
 				</header>
 

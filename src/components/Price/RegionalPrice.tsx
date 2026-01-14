@@ -45,8 +45,6 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 	}).format(converted);
 
 	return (
-		<span className={`${styles.meta2} ${styles.price}`}>
-			~ ${formatted}
-		</span>
+		<span className={`${styles.meta2} ${styles.price}`}>~{formatted}</span>
 	);
 }
