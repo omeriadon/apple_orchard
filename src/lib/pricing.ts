@@ -1,13 +1,25 @@
 import type { Pricing } from "@/types/iphone";
 
+export type BasePrice = {
+	amount: number;
+	currency: string;
+	refurbished?: number;
+	storage?: Record<number, number>;
+};
+
 export function computeBasePrice(
 	pricing: Pricing | undefined,
 	storage?: number,
-) {
+): BasePrice | null {
 	if (!pricing?.base) return null;
 
-	const amount = storage
-		? (pricing.base.storage?.[storage] ?? pricing.base.new)
-		: pricing.base.new;
-	return { amount, currency: "AUD" };
+	const base = pricing.base;
+	const amount = storage ? (base.storage?.[storage] ?? base.new) : base.new;
+
+	return {
+		amount,
+		currency: "AUD",
+		refurbished: base.refurbished,
+		storage: base.storage,
+	};
 }

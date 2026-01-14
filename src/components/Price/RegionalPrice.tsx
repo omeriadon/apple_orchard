@@ -1,7 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { computeBasePrice } from "@/lib/pricing";
+import * as React from "react";
+import {
+	Root as PopoverRoot,
+	Trigger as PopoverTrigger,
+	Content as PopoverContent,
+	Portal as PopoverPortal,
+	Arrow as PopoverArrow,
+	Close as PopoverClose,
+} from "@radix-ui/react-popover";
+import { X } from "lucide-react";
+import { computeBasePrice, type BasePrice } from "@/lib/pricing";
 import { useUserPricingOverride } from "@/lib/userPricing";
 import type { Pricing } from "@/types/iphone";
 import styles from "@/components/DeviceCard/deviceCard.module.css";
@@ -15,36 +24,58 @@ const PLACEHOLDER = "?";
 
 export default function RegionalPrice({ pricing, storage }: Props) {
 	const { override } = useUserPricingOverride();
-	const [hydrated, setHydrated] = useState(false);
 
-	useEffect(() => {
-		const timer = setTimeout(() => setHydrated(true), 0);
-		return () => clearTimeout(timer);
-	}, []);
-
-	if (!hydrated || !pricing) {
-		return (
-			<span className={`${styles.meta2} ${styles.price}`}>
-				{PLACEHOLDER}
-			</span>
-		);
-	}
-
-	const base = computeBasePrice(pricing, storage);
-	if (!base) {
-		return (
-			<span className={`${styles.meta2} ${styles.price}`}>
-				{PLACEHOLDER}
-			</span>
-		);
-	}
-
-	const converted = Math.round(base.amount * override.multiplier);
+	const base: BasePrice | null = pricing
+		? computeBasePrice(pricing, storage)
+		: null;
+	const converted = base ? Math.round(base.amount * override.multiplier) : 0;
 	const formatted = new Intl.NumberFormat(undefined, {
 		maximumFractionDigits: 0,
 	}).format(converted);
 
+	if (!pricing || !base) {
+		return (
+			<span className={`${styles.meta2} ${styles.price}`}>
+				{PLACEHOLDER}
+			</span>
+		);
+	}
+
 	return (
-		<span className={`${styles.meta2} ${styles.price}`}>~{formatted}</span>
+		<PopoverRoot>
+			<PopoverTrigger asChild>
+				<span
+					className={`${styles.meta2} ${styles.price}`}
+					style={{ cursor: "pointer" }}
+				>
+					~{formatted}
+				</span>
+			</PopoverTrigger>
+
+			<PopoverPortal>
+				<PopoverContent
+					className={styles.popoverContent}
+					sideOffset={8}
+					align="center"
+				>
+					<div>
+						<div className={styles.popoverPrices}>
+							<div>New: ${base.amount}</div>
+							{base.refurbished && (
+								<div>Refurbished: ${base.refurbished}</div>
+							)}
+							{base.storage &&
+								Object.entries(base.storage).map(
+									([size, price]) => (
+										<div key={size}>
+											{size} GB: ${price}
+										</div>
+									),
+								)}
+						</div>
+					</div>
+				</PopoverContent>
+			</PopoverPortal>
+		</PopoverRoot>
 	);
 }
