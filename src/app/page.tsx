@@ -4,7 +4,6 @@ import { useState } from "react";
 import { navItems } from "@/data/pages";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Arrow } from "@radix-ui/react-popover";
 
 export default function Home() {
 	const [hoverIndex, setHoverIndex] = useState<number | null>(null);

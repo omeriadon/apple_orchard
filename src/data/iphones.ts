@@ -291,6 +291,12 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [1, 2],
 		cameraResolutions: [48],
+		pricing: {
+			base: {
+				new: 797,
+				storage: { 128: 797, 256: 997, 512: 1397 },
+			},
+		},
 	},
 
 	//MARK: - 15
@@ -319,6 +325,12 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2, 5],
 		cameraResolutions: [48, 12, 12],
+		pricing: {
+			base: {
+				new: 1694,
+				storage: { 512: 1694 },
+			},
+		},
 	},
 	{
 		id: "15Pro",
@@ -397,6 +409,12 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2],
 		cameraResolutions: [48, 12],
+		pricing: {
+			base: {
+				new: 967,
+				storage: { 128: 967, 256: 1167 },
+			},
+		},
 	},
 
 	//MARK: - 14
