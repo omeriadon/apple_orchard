@@ -228,7 +228,7 @@ const _iPhones: iPhone[] = [
 		introduced: 2024,
 		supportedUntil: 2032,
 		maxBrightness: 2000,
-		screenSize: 6.3,
+		screenSize: 6.1,
 		proMotion: false,
 		topStructure: "dynamicIsland",
 		processor: "A18",

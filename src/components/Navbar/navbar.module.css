@@ -47,12 +47,6 @@
 	transform: scale(1.1);
 }
 
-.settingsToggle {
-	color: white;
-	cursor: pointer;
-	transition: all 0.3s ease;
-}
-
 .settingsToggle:hover {
 	transform: scale(1.1);
 }
