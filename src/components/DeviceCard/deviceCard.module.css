@@ -116,4 +116,9 @@
 	border-radius: 30px;
 	padding: 0.1rem 0.3rem;
 	margin-left: -0.1rem;
+	transition: all 0.2s ease;
+}
+
+.price:hover {
+	transform: scale(1.1);
 }
