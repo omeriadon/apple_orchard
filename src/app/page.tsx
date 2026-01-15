@@ -3,6 +3,8 @@ import styles from "./home.module.css";
 import { useState } from "react";
 import { navItems } from "@/data/pages";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Arrow } from "@radix-ui/react-popover";
 
 export default function Home() {
 	const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -11,17 +13,16 @@ export default function Home() {
 		<div className={styles.main}>
 			<div className={styles.top}>
 				<h1 className={styles.title}>The Apple Orchard</h1>
-				<h2 className={styles.subtitle}>
-					A tool to easily compare Apple devices on their main specs,
-					to help with your next buy.
-				</h2>
 				<br />
+				<h2 className={styles.subtitle}>
+					A tool to easily compare iPhones on their main specs, to
+					help with your next buy.
+				</h2>
 				<p>
-					Scroll through a section and compare the main specs of a
-					device, such as base storage or refresh rate.
+					Scroll through a section and compare the main specs of an
+					iPhone, such as base storage or refresh rate.
 				</p>
 			</div>
-			<div className={styles.linksTitle}>Let&apos;s go:</div>
 			<div className={styles.links}>
 				{navItems.map((page, index) => (
 					<Link
@@ -37,7 +38,10 @@ export default function Home() {
 									: "transparent",
 						}}
 					>
-						{page.label}
+						<span className={styles.inline}>
+							{page.label}
+							<ArrowRight size={30} />
+						</span>
 					</Link>
 				))}
 			</div>

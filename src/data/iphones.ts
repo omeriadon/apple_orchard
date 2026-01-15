@@ -161,6 +161,12 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2, 5],
 		cameraResolutions: [48, 48, 12],
+		pricing: {
+			base: {
+				new: 2147,
+				storage: { 256: 2147 },
+			},
+		},
 	},
 	{
 		id: "16Pro",
@@ -187,6 +193,12 @@ const _iPhones: iPhone[] = [
 		frontCameraType: "12 MP",
 		opticalZoomOptions: [0.5, 1, 2, 5],
 		cameraResolutions: [48, 48, 12],
+		pricing: {
+			base: {
+				new: 1797,
+				storage: { 128: 1399 },
+			},
+		},
 	},
 	{
 		id: "16Plus",

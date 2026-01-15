@@ -43,7 +43,8 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 					style={{ cursor: "pointer" }}
 					onPointerDown={(e) => e.stopPropagation()}
 				>
-					<CircleDollarSign size={16} />~ {formatted}
+					<CircleDollarSign size={16} />
+					{formatted}
 				</span>
 			</PopoverTrigger>
 
@@ -62,7 +63,7 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 											key={size}
 											data-label={`${size} GB`}
 										>
-											~ ${price}
+											${price}
 										</div>
 									),
 								)}
@@ -74,7 +75,7 @@ export default function RegionalPrice({ pricing, storage }: Props) {
 							{base.refurbished && (
 								<div data-label="Refurbished">
 									<div data-label="Refurbished">
-										~ ${base.refurbished}
+										${base.refurbished}
 									</div>
 								</div>
 							)}

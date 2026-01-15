@@ -46,3 +46,10 @@
 .link:hover {
 	transform: scale(1.1);
 }
+
+.inline {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	white-space: nowrap;
+}
