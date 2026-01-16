@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
 export default function ViewportGate({
@@ -9,27 +10,28 @@ export default function ViewportGate({
 	const [blocked, setBlocked] = useState(false);
 
 	useEffect(() => {
-		const check = () => {
-			setBlocked(window.innerWidth < 1000 || window.innerHeight < 700);
-		};
+		const check = () =>
+			setBlocked(window.innerWidth < 600 || window.innerHeight < 600);
 
 		check();
 		window.addEventListener("resize", check);
 		return () => window.removeEventListener("resize", check);
 	}, []);
 
-	if (blocked) {
-		return (
+	return (
+		<>
 			<div
 				style={{
-					height: "100vh",
-					width: "100vw",
-					display: "grid",
-					placeItems: "center",
+					position: "fixed",
+					inset: 0,
 					background: "black",
 					color: "white",
-					textAlign: "center",
-					fontSize: "1.5rem",
+					display: "grid",
+					placeItems: "center",
+					opacity: blocked ? 1 : 0,
+					pointerEvents: blocked ? "auto" : "none",
+					transition: "opacity 300ms ease",
+					zIndex: 9999,
 				}}
 			>
 				<div>
@@ -38,8 +40,15 @@ export default function ViewportGate({
 					<p>You can zoom out (⌃- or ⌘-) to view.</p>
 				</div>
 			</div>
-		);
-	}
 
-	return <>{children}</>;
+			<div
+				style={{
+					opacity: blocked ? 0 : 1,
+					transition: "opacity 300ms ease",
+				}}
+			>
+				{children}
+			</div>
+		</>
+	);
 }
