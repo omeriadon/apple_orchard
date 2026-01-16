@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Background from "@/components/Background";
 import { ViewTransition } from "react";
+import ViewportGate from "./ViewportGate";
 
 export const metadata: Metadata = {
 	title: "Apple Orchard",
@@ -17,13 +18,15 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<Background />
-				<div className="site-content">
-					<Navbar />
-					<ViewTransition>
-						<main>{children}</main>
-					</ViewTransition>
-				</div>
+				<ViewTransition>
+					<ViewportGate>
+						<Background />
+						<div className="site-content">
+							<Navbar />
+							<main>{children}</main>
+						</div>
+					</ViewportGate>
+				</ViewTransition>
 			</body>
 		</html>
 	);
